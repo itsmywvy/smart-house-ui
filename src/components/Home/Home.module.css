@@ -1,0 +1,268 @@
+.content-title {
+  font-size: 48px;
+  line-height: 58px;
+  letter-spacing: 0.09em;
+  color: #1D2343;
+}
+
+.title {
+  margin-bottom: 28px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.info__item {
+  background: #FFFFFF;
+  box-shadow: 0px 4px 35px rgba(0, 0, 0, 0.14);
+  border-radius: 30px;
+  padding: 13px 27px;
+  height: 146px;
+}
+
+.info__item:not(:last-child) {
+  margin-right: 25px;
+}
+
+.subtitle {
+  font-size: 15px;
+  line-height: 18px;
+  letter-spacing: 0.09em;
+  color: rgba(29, 35, 67, 0.63);
+}
+
+.time {
+  font-size: 51px;
+  line-height: 61px;
+  letter-spacing: 0.035em;
+  color: rgba(29, 35, 67, 0.75);
+  margin-top: 20px;
+}
+
+.time span {
+  animation: timeDoubleQoutesAnim 1s ease-in-out infinite alternate;
+}
+
+@keyframes timeDoubleQoutesAnim {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.temp {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 8px;
+}
+
+.temp span {
+  font-size: 40px;
+  line-height: 48px;
+  letter-spacing: 0.09em;
+  color: rgba(29, 35, 67, 0.75);
+  margin-right: 42px;
+}
+
+.members {
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.membersUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.membersUser:not(:last-child) {
+  margin-right: 20px;
+}
+
+.membersUser span {
+  margin-top: 10px;
+  font-size: 11px;
+  line-height: 13px;
+  letter-spacing: 0.09em;
+  color: rgba(29, 35, 67, 0.63);
+}
+
+.contentSubtitle {
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: 0.09em;
+  color: rgba(29, 35, 67, 0.75);
+}
+
+.controls__subtitle {
+  margin-bottom: 31px;
+}
+
+.controlsInfo {
+  display: flex;
+}
+
+.controlsInfo__item {
+  height: 331px;
+  box-shadow: 0px 4px 35px rgba(0, 0, 0, 0.14);
+  border-radius: 30px;
+  padding: 15px 27px;
+}
+
+.controlsInfo__item:not(:last-child) {
+  margin-right: 25px;
+}
+
+.controlsInfo__item h3{
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.09em;
+  color: rgba(29, 35, 67, 0.63);
+  margin-bottom: 16px;
+}
+
+.diagram {
+  width: 143px;
+  height: 143px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0px 4px 35px rgba(0, 0, 0, 0.17);
+}
+
+.diagramCount {
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.09em;
+  color: rgba(29, 35, 67, 0.63);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chartText {
+  font-size: 10px;
+  line-height: 48px;
+  letter-spacing: 0.09em;
+  color: #1D2343;
+  fill: #000;
+  transform: translateY(0.25em);
+}
+
+.chartNumber {
+  line-height: 1;
+  text-anchor: middle;
+  transform: translateY(-0.05em);
+}
+
+.termometherWrapper {
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.03em;
+  color: #fff;
+  box-shadow: 0px -6px 60px rgba(29, 35, 67, 0.14);
+  border-radius: 25px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px 32px 60px 32px;
+  position: relative;
+  overflow: hidden;
+  z-index: 12;
+  max-width: 83px;
+}
+
+.termometherWrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--red);
+  width: 87px;
+  height: 60%;
+  z-index: -1;
+}
+
+.termometherWrapper.termometherWrapper--red::after {
+  content: '';
+  background: var(--red);
+}
+
+.termometherWrapper.termometherWrapper--blue::after {
+  content: '';
+  background: var(--blue);
+}
+
+.termometherWrapper.termometherWrapper--dark-blue::after {
+  background: var(--dark-blue);
+}
+
+.termometherWrapper--red {
+  background: #ffe5e5;
+}
+
+.termometherWwrapper--blue {
+  background: #d9ecee;
+}
+
+.termometherWrapper--dark-blue {
+  background: rgba(197, 202, 227, 0.71);
+}
+
+.termometherWrapper img {
+  margin-bottom: 83px;
+}
+
+.controls-shortcuts {
+  margin-left: 45px
+}
+
+.controlsShortcuts h3{
+  font-size: 15px;
+  line-height: 18px;
+  letter-spacing: 0.09em;
+  color: rgba(29, 35, 67, 0.63);
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.shortcutsWrapper {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.block {
+  padding: 25px 24px 25px 21px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  border-radius: 18px;
+}
+
+.block:not(:last-child) {
+  margin-bottom: 14px;
+}
+
+.block img {
+  margin-right: 16px;
+}
+
+.block--red {
+  background: var(--red);
+}
+
+.block--blue {
+  background: var(--blue);
+}
+
+.block--dark-blue {
+  background: var(--dark-blue);
+}

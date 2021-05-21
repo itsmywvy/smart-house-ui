@@ -1,0 +1,39 @@
+.climate {
+  display: flex;
+  margin-top: 30px;
+}
+
+.climate__item {
+  display: flex;
+  padding: 13px 20px 15px 18px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 35px rgba(0, 0, 0, 0.14);
+  border-radius: 30px;
+}
+
+.climate__item:not(:last-child) {
+  margin-right: 30px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  margin-right: 27px;
+}
+
+.info__text {
+  font-size: 15px;
+  line-height: 18px;
+  letter-spacing: 0.09em;
+  color: rgba(29, 35, 67, 0.63);
+  max-width: 15px;
+  margin-bottom: 16px;
+}
+
+.info__numbers {
+  text-align: right;
+  font-size: 36px;
+  line-height: 43px;
+  letter-spacing: 0.09em;
+  color: rgba(29, 35, 67, 0.75);
+}
