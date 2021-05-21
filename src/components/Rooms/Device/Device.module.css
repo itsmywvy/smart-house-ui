@@ -1,0 +1,40 @@
+.device {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 25%;
+  max-width: 163px;
+  height: 131px;
+  border-radius: 20px;
+}
+
+.device:hover {
+  cursor: pointer;
+}
+
+.device:not(:last-child) {
+  margin-right: 36px;
+}
+
+.deviceIcon{
+  margin-bottom: 14px;
+  width: 35px;
+  height: 40px;
+}
+
+.device:nth-child(3n + 1) {
+  background: var(--red);
+}
+
+.device:nth-child(3n + 2) {
+  background: var(--blue);
+}
+
+.device:nth-child(3n + 3) {
+  background: var(--dark-blue);
+}
+
+.device:nth-child(n + 5) {
+  margin-top: 30px;
+}
