@@ -66,3 +66,15 @@ a {
   letter-spacing: 0.09em;
   color: rgba(29, 35, 67, 0.75);
 }
+
+.block--dark-blue {
+  background: var(--dark-blue);
+}
+
+.block--red {
+  background: var(--red);
+}
+
+.block--blue  {
+  background: var(--blue);
+}

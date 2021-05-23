@@ -3,6 +3,7 @@ import styles from './Home.module.css'
 
 import userIcon from '../../assets/images/user.svg'
 import cloudIcon from '../../assets/images/clouds.svg'
+import { IntercomIcon, MusicIcon, ThermometherIcon, WifiIcon } from '../SvgIcons'
 
 
 const Home = () => {
@@ -10,7 +11,7 @@ const Home = () => {
   const minutes = new Date().toLocaleString('en-US', {minute: 'numeric', hour12: true})
 
   return (
-    <div className={`${styles.home} ${styles.content}`}>
+    <div className={`${styles.home}`}>
         <h1 className={`${styles.title} content-title`}>Welcome, David</h1>
         <div className={styles.info}>
           <div className={styles.info__item}>
@@ -85,7 +86,7 @@ const Home = () => {
           <div className="controls-info__item">
             <h3>Temperature</h3>
             <div className="termomether-wrapper">
-              <img src="images/termomether.svg" alt=""/>
+              <ThermometherIcon/>
               <span>+23°C</span>
             </div>
           </div>
@@ -94,17 +95,17 @@ const Home = () => {
             <h3>Shortcuts</h3>
             <div className="shortcuts-wrapper">
               <div className="block block--red">
-                <img src="images/wifi.svg" alt=""/>
+                <WifiIcon/>
                 <span>WI-FI</span>
               </div>
 
               <div className="block block--blue">
-                <img src="images/music.svg" alt=""/>
+                <MusicIcon/>
                 <span>Music</span>
               </div>
 
               <div className="block block--dark-blue">
-                <img src="images/intercom.svg" alt=""/>
+                <IntercomIcon/>
                 <span>Intercom</span>
               </div>
             </div>
