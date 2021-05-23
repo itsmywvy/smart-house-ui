@@ -7,7 +7,7 @@ import { IntercomIcon, MusicIcon, ThermometherIcon, WifiIcon } from '../SvgIcons
 
 
 const Home = () => {
-  const hours = new Date().toLocaleString('en-US', {hour: 'numeric', hour12: true}).slice(0, 2)
+  const hours = new Date().toLocaleString('en-US', {hour: 'numeric', hour12: true})
   const minutes = new Date().toLocaleString('en-US', {minute: 'numeric', hour12: true})
 
   return (
@@ -17,7 +17,7 @@ const Home = () => {
           <div className={styles.info__item}>
             <h3 className={styles.subtitle}>Time</h3>
             <div className={styles.time}>
-              {hours}<span>: </span>{minutes}pm
+              {hours}<span>: </span>{minutes}
             </div>
           </div>
           <div className={styles.info__item}>

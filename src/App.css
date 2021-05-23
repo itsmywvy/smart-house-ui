@@ -12,6 +12,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 ul {
   list-style: none;
 }
@@ -28,7 +32,6 @@ a {
   ;
   grid-template-rows: 118px 1fr;
   grid-template-columns: 172px 1fr;
-  border-radius: 60px;
   overflow: hidden;
   height: 100vh;
   position: relative;
@@ -84,7 +87,7 @@ a {
   height: 7px;
  }
  ::-webkit-scrollbar-thumb {
-  background: linear-gradient(13deg, #EE777F 14%,#65bdc0 64%);
+  background: linear-gradient(13deg, var(--red) 14%,var(--blue) 64%);
   border-radius: 11px;
  }
  ::-webkit-scrollbar-thumb:hover{

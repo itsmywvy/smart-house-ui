@@ -3,7 +3,7 @@
 }
 
 .roomContent {
-  flex-basis: 95%;
+  flex-grow: 1;
 }
 
 .device {
@@ -21,7 +21,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-basis: 25%;
   max-width: 163px;
   height: 131px;
@@ -59,9 +59,9 @@
 }
 
 .navigation {
-  
   display: flex;
   flex-direction: column;
+  flex-basis: 5%;
 }
 
 .navigation__item {

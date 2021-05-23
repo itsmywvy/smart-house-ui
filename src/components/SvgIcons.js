@@ -221,3 +221,23 @@ export const PcIcon = () => {
     </svg>
   )
 }
+
+export const AddMemberIcon = () => {
+  return (
+    <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g opacity="0.7">
+    <path d="M50 97C75.9574 97 97 75.9574 97 50C97 24.0426 75.9574 3 50 3C24.0426 3 3 24.0426 3 50C3 75.9574 24.0426 97 50 97Z" stroke="#E0E0E0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M50 31.2V68.8" stroke="#E0E0E0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M31.2 50H68.8" stroke="#E0E0E0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    </svg>
+  )
+}
+
+export const MessageIcon = () => {
+  return (
+    <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 0C15.5 0 20 3.58 20 8C20 12.42 15.5 16 10 16C8.76 16 7.57 15.82 6.47 15.5C3.55 18 0 18 0 18C2.33 15.67 2.7 14.1 2.75 13.5C1.05 12.07 0 10.13 0 8C0 3.58 4.5 0 10 0Z" fill="#FFF5F5"/>
+    </svg>
+  )
+}

@@ -17,31 +17,31 @@ const Rooms = () => {
         </div>
         
         <nav className={styles.navigation}>
-            <NavLink to="/rooms/bedroom" 
-                     className={styles.navigation__item}
-                     activeClassName={styles.active}>
-              <BedroomIcon/>
-              <span>Bedroom</span>
-            </NavLink>
-            <NavLink to="/rooms/kitchen"
-                     className={styles.navigation__item}
-                     activeClassName={styles.active}>
-              <KitchenIcon/>
-              <span>Kitchen</span>
-            </NavLink>
-            <NavLink to="/rooms/livingroom"
-                     className={styles.navigation__item}
-                     activeClassName={styles.active}>
-              <LivingRoomIcon/>
-              <span>Living room</span>
-            </NavLink>
-            <NavLink to="/rooms/bathroom"
-                     className={styles.navigation__item}
-                     activeClassName={styles.active}>
-              <BathroomIcon/>
-              <span>Bathroom</span>
-            </NavLink>
-          </nav>
+          <NavLink to="/rooms/bedroom" 
+                   className={styles.navigation__item}
+                   activeClassName={styles.active}>
+            <BedroomIcon/>
+            <span>Bedroom</span>
+          </NavLink>
+          <NavLink to="/rooms/kitchen"
+                   className={styles.navigation__item}
+                   activeClassName={styles.active}>
+            <KitchenIcon/>
+            <span>Kitchen</span>
+          </NavLink>
+          <NavLink to="/rooms/livingroom"
+                   className={styles.navigation__item}
+                   activeClassName={styles.active}>
+            <LivingRoomIcon/>
+            <span>Living room</span>
+          </NavLink>
+          <NavLink to="/rooms/bathroom"
+                   className={styles.navigation__item}
+                   activeClassName={styles.active}>
+            <BathroomIcon/>
+            <span>Bathroom</span>
+          </NavLink>
+        </nav>
       </div>
   )
 }
