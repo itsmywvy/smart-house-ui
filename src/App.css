@@ -78,3 +78,20 @@ a {
 .block--blue  {
   background: var(--blue);
 }
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+ }
+ ::-webkit-scrollbar-thumb {
+  background: linear-gradient(13deg, #EE777F 14%,#65bdc0 64%);
+  border-radius: 11px;
+ }
+ ::-webkit-scrollbar-thumb:hover{
+  background: linear-gradient(9deg, #cf656d 25%,#55a0a3 48%);
+ }
+ ::-webkit-scrollbar-track{
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: inset 7px 10px 12px #f0f0f0;
+ }

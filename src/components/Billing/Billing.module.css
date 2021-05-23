@@ -1,0 +1,105 @@
+.title {
+  margin-bottom: 18px;
+}
+
+.grid {
+  display: grid;
+  grid-template-areas: 
+  "history current"
+  "chart chart";
+  position: relative;
+}
+
+.gridItem__history {
+  grid-area: history;
+  margin-bottom: 51px;
+}
+
+.subtitle {
+  margin-bottom: 17px;
+}
+
+.tableWrapper {
+  height: 300px;
+  overflow-y: scroll;
+}
+
+.table {
+  background: #FFF5F5;
+  box-shadow: 0px 4px 35px rgba(0, 0, 0, 0.14);
+  border-radius: 30px;
+  padding: 15px 33px 28px 41px;
+  border-collapse:collapse;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.09em;
+  text-align: center;
+}
+
+.table tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.table td {
+  padding: 15px 43px;
+  color: rgba(29, 35, 67, 0.71);
+}
+
+.tableBody td:last-child {
+  background: #000;
+  background: rgba(238, 119, 127, 0.46);
+  border-radius: 16px;
+}
+
+.tableHead td{
+  color: rgba(29, 35, 67, 0.47);
+}
+
+.gridItem__current {
+  grid-area: current;
+}
+
+.currentInvoice {
+  padding: 25px;
+  background: #FFF5F5;
+  box-shadow: 0px 4px 35px rgba(0, 0, 0, 0.14);
+  border-radius: 30px;
+}
+
+.currentInvoice__head {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+  padding-bottom: 8px;
+}
+
+.currentInvoice__item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.currentInvoice__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-top: 8px;
+}
+
+.currentInvoice__body .currentInvoice__item span{
+  padding-left: 30px;
+}
+
+.btnPay {
+  margin:25px auto 0;
+  padding: 8px 35px;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.09em;
+  color: #FFF5F5;
+  background: var(--red);
+  border-radius: 21px;
+}
+
+.gridItem__chart {
+  grid-area: chart;
+}
+
