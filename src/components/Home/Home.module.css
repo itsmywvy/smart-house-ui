@@ -1,3 +1,8 @@
+.home {
+  display: flex;
+  flex-direction: column;
+}
+
 .content-title {
   font-size: 48px;
   line-height: 58px;
@@ -11,6 +16,7 @@
 
 .info {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 28px;
 }
@@ -106,6 +112,7 @@
 
 .controlsInfo {
   display: flex;
+  justify-content: space-between;
 }
 
 .controlsInfo__item {
@@ -125,39 +132,6 @@
   letter-spacing: 0.09em;
   color: rgba(29, 35, 67, 0.63);
   margin-bottom: 16px;
-}
-
-.diagram {
-  width: 143px;
-  height: 143px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0px 4px 35px rgba(0, 0, 0, 0.17);
-}
-
-.diagramCount {
-  font-size: 18px;
-  line-height: 22px;
-  letter-spacing: 0.09em;
-  color: rgba(29, 35, 67, 0.63);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.chartText {
-  font-size: 10px;
-  line-height: 48px;
-  letter-spacing: 0.09em;
-  color: #1D2343;
-  fill: #000;
-  transform: translateY(0.25em);
-}
-
-.chartNumber {
-  line-height: 1;
-  text-anchor: middle;
-  transform: translateY(-0.05em);
 }
 
 .termometherWrapper {
@@ -220,11 +194,11 @@
   margin-bottom: 83px;
 }
 
-.controls-shortcuts {
+.shortcuts {
   margin-left: 45px
 }
 
-.controlsShortcuts h3{
+.shortcuts h3{
   font-size: 15px;
   line-height: 18px;
   letter-spacing: 0.09em;
@@ -239,7 +213,7 @@
   
 }
 
-.block {
+.shortcut {
   padding: 25px 24px 25px 21px;
   display: flex;
   align-items: center;
@@ -247,22 +221,10 @@
   border-radius: 18px;
 }
 
-.block:not(:last-child) {
+.shortcut:not(:last-child) {
   margin-bottom: 14px;
 }
 
-.block img {
-  margin-right: 16px;
-}
-
-.block--red {
-  background: var(--red);
-}
-
-.block--blue {
-  background: var(--blue);
-}
-
-.block--dark-blue {
-  background: var(--dark-blue);
+.shortcut span{
+  margin-left: 16px;
 }

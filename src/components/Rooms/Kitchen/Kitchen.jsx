@@ -3,6 +3,7 @@ import Device from '../Device/Device'
 import styles from './Kitchen.module.css'
 
 import {FridgeIcon, ThermometherIcon, DropIcon, LightIcon, KettleIcon, IndoorGrillIcon, MicrowaveIcon, TvIcon, MulticookerIcon, DishwasherIcon, StoveIcon} from '../../SvgIcons'
+import Thermomether from '../../Thermomether/Thermomether'
 
 
 const Kitchen = () => {
@@ -16,13 +17,18 @@ const Kitchen = () => {
             <span className={styles.info__numbers}>+23.5°C</span>
             <span className={styles.info__numbers}>74.3°F</span>
           </div>
-          <div className={styles.thermomether}>
+          {/* <div className={styles.thermomether}>
             <div className={`${styles.termometherWrapper} termomether-wrapper--red`}>
               <div className={styles.termIcon}>
                 <ThermometherIcon/>
               </div>
             </div>
-          </div>
+          </div> */}
+
+        <Thermomether icon={<ThermometherIcon/>} 
+                      cssStyles={
+                                 {width: 76, height: 176, background: "#FFE5E5"}} 
+                      value={null}/>
         </div>
 
         <div className={styles.climate__item}>
@@ -30,13 +36,10 @@ const Kitchen = () => {
             <span className={styles.info__text}>Room’s Humidity</span>
             <span className={styles.info__numbers}>40%</span>
           </div>
-          <div className={styles.thermomether}>
-            <div className={`${styles.termometherWrapper} ${styles.termomether__blue}`}>
-              <div className={styles.termIcon}>
-                <DropIcon/>
-              </div>
-            </div>
-          </div>
+          <Thermomether icon={<DropIcon/>} 
+                      cssStyles={
+                                 {width: 76, height: 176, background: "#CAEEEF"}} 
+                      value={null}/>
         </div>
 
         <div className={styles.climate__item}>
@@ -44,13 +47,10 @@ const Kitchen = () => {
             <span className={styles.info__text}>Room’s Lightning</span>
             <span className={styles.info__numbers}>86%</span>
           </div>
-          <div className={styles.thermomether}>
-            <div className={`${styles.termometherWrapper} ${styles.termomether__darkblue}`}>
-              <div className={styles.termIcon}>
-                <LightIcon/>
-              </div>
-            </div>
-          </div>
+          <Thermomether icon={<LightIcon/>} 
+                      cssStyles={
+                                 {width: 76, height: 176, backgroundColor: "#C5CAE3"}} 
+                      value={null}/>
         </div>
       </div>
       <div className={styles.device}>

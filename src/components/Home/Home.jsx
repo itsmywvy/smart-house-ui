@@ -4,11 +4,18 @@ import styles from './Home.module.css'
 import userIcon from '../../assets/images/user.svg'
 import cloudIcon from '../../assets/images/clouds.svg'
 import { IntercomIcon, MusicIcon, ThermometherIcon, WifiIcon } from '../SvgIcons'
+import Thermomether from '../Thermomether/Thermomether'
+import Diagram from './Diagram/Diagram'
 
 
 const Home = () => {
   const hours = new Date().toLocaleString('en-US', {hour: 'numeric', hour12: true})
   const minutes = new Date().toLocaleString('en-US', {minute: 'numeric', hour12: true})
+
+  const data = [
+    {id: 1, value: 83},
+    {id: 2, value: 36}
+  ]
 
   return (
     <div className={`${styles.home}`}>
@@ -45,66 +52,38 @@ const Home = () => {
         <div className={styles.controlsInfo}>
           <div className={styles.controlsInfo__item}>
             <h3>Light Intensity</h3>
-            <div className="diagram-wrapper">
-              {/* <svg viewBox="0 0 42 42" className="diagram">
-                <circle className="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff"></circle>
-                <circle className="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="transparent" stroke-width="3"></circle>
-                <circle className="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#65BDC0" stroke-width="3" stroke-dasharray="85 10" stroke-dashoffset="70"></circle>
-                <g className="chart-text">
-                  <text x="50%" y="50%" className="chart-number">
-                    83%
-                  </text>
-                </g>
-              </svg> */}
-              <div className="diagram-count">
-                <span>0</span>
-                <span>100</span>
-              </div>
-            </div>
+            <Diagram value={86} color={"#65BDC0"}/>
           </div>
 
-          <div className="controls-info__item">
+          <div className={styles.controlsInfo__item}>
             <h3>Air Conditioning</h3>
-            <div className="diagram-wrapper">
-              {/* <svg width="100%" height="100%" viewBox="0 0 42 42" className="diagram">
-                <circle className="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff"></circle>
-                <circle className="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="transparent" stroke-width="3"></circle>
-                <circle className="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#1D2343" stroke-width="3" stroke-dasharray="36 67" stroke-dashoffset="70"></circle>
-                <g className="chart-text">
-                  <text x="50%" y="50%" className="chart-number">
-                    36%
-                  </text>
-                </g>
-              </svg> */}
-              <div className="diagram-count">
-                <span>0</span>
-                <span>100</span>
-              </div>
-            </div>
+            <Diagram value={36} color={"#1D2343"}/>
           </div>
 
-          <div className="controls-info__item">
+          <div className={styles.controlsInfo__item}>
             <h3>Temperature</h3>
-            <div className="termomether-wrapper">
-              <ThermometherIcon/>
-              <span>+23°C</span>
-            </div>
+            <Thermomether icon={<ThermometherIcon/>} 
+                          cssStyles={{
+                                      width: 85,
+                                      height: 240,
+                          }}
+                          value={23}/>
           </div>
 
-          <div className="controls-shortcuts">
+          <div className={styles.shortcuts}>
             <h3>Shortcuts</h3>
-            <div className="shortcuts-wrapper">
-              <div className="block block--red">
+            <div className={styles.shortcutsWrapper}>
+              <div className={`${styles.shortcut} block--red`}>
                 <WifiIcon/>
                 <span>WI-FI</span>
               </div>
 
-              <div className="block block--blue">
+              <div className={`${styles.shortcut} block--blue`}>
                 <MusicIcon/>
                 <span>Music</span>
               </div>
 
-              <div className="block block--dark-blue">
+              <div className={`${styles.shortcut} block--dark-blue`}>
                 <IntercomIcon/>
                 <span>Intercom</span>
               </div>

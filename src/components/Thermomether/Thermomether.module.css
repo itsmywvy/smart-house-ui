@@ -1,0 +1,73 @@
+.termometherWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.termomether {
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.03em;
+  color: #fff;
+  box-shadow: 0px -6px 60px rgba(29, 35, 67, 0.14);
+  border-radius: 25px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* padding: 30px 32px 60px 32px; */
+  position: relative;
+  overflow: hidden;
+  z-index: 12;
+}
+
+.termScale {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--red);
+  /* transform: translateY(0); */
+  width: 87px;
+  height: 60%;
+  z-index: -1;
+}
+
+.termomether.termomether--red::after {
+  content: '';
+  background: var(--red);
+}
+
+.termomether.termomether--blue::after {
+  content: '';
+  background: var(--blue);
+}
+
+.termomether.termomether--dark-blue::after {
+  background: var(--dark-blue);
+}
+
+.termomether--red {
+  background: #ffe5e5;
+}
+
+.termomether--blue {
+  background: #d9ecee;
+}
+
+.termomether--dark-blue {
+  background: rgba(197, 202, 227, 0.71);
+}
+
+.termomether svg {
+  margin-bottom: 83px;
+}
+
+.temperature::before {
+  content: '+';
+}
+
+.temperature::after {
+  content: '°C';
+}
