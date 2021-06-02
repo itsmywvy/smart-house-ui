@@ -5,36 +5,9 @@ import MemberCard from './MemberCard/MemberCard'
 
 import styles from './Members.module.css'
 
-const Members = () => {
-
-  const data = [
-    {
-      id: 1,
-      name: 'Annie Gulberg',
-      avatarSrc: 'https://images.ctfassets.net/hrltx12pl8hq/6YSoTmOYPk2VtQ7JSkPuzS/8250a3d54c1a714aa5e57f6a2826509e/shutterstock_1554086789.jpg?fit=fill&w=480&h=270',
-      role: 'Owner',
-      status: 'At home',
-      room: 'Bedroom 1'
-    },
-    {
-      id: 2,
-      name: 'John Gulberg',
-      avatarSrc: 'http://www.freedigitalphotos.net/images/category-images/118.jpg',
-      role: 'Owner',
-      status: 'At home',
-      room: 'Bedroom 1'
-    },
-    {
-      id: 3,
-      name: 'Marie Gulberg',
-      avatarSrc: 'https://images.pexels.com/photos/2811089/pexels-photo-2811089.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      role: 'Owner',
-      status: 'Out',
-      room: 'Bedroom 2'
-    },
-  ]
-  
-  const cards = data.map(elem => {
+const Members = (props) => {
+  debugger
+  const cards = props.data.map(elem => {
     return <MemberCard 
               id={elem.id}
               name={elem.name}
@@ -50,7 +23,7 @@ const Members = () => {
         <div className={styles.membersCards}>
           {cards}
           	<div className={`${styles.card} ${styles.emptyCard}`}>
-	            <button className="btn btn-add">
+	            <button className="btn btn-add" onClick={props.addMember}>
 	              <AddMemberIcon/>
 	            </button>
         		</div>

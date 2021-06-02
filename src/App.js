@@ -3,7 +3,7 @@ import './App.css';
 import Billing from './components/Billing/Billing';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
-import Members from './components/Members/Members';
+import MemberContainer from './components/Members/MemberContainer';
 import Rooms from './components/Rooms/Rooms';
 import Sidebar from './components/Sidebar/Sidebar';
 import Statistics from './components/Statistics/Statistics';
@@ -18,7 +18,7 @@ function App() {
         <Route path="/rooms" render={() => <Rooms/>}/>
         <Route path="/statistics" render={() => <Statistics/>}/>
         <Route path="/billing" render={() => <Billing/>}/>
-        <Route path="/members" render={() => <Members/>}/>
+        <Route path="/members" render={() => <MemberContainer/>}/>
       </main>
       
     </div>
