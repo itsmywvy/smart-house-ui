@@ -1,59 +1,55 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Device from '../Device/Device'
-import styles from './Kitchen.module.css'
-
+import styles from './Room.module.css'
 import {FridgeIcon, ThermometherIcon, DropIcon, LightIcon, KettleIcon, IndoorGrillIcon, MicrowaveIcon, TvIcon, MulticookerIcon, DishwasherIcon, StoveIcon} from '../../SvgIcons'
 import Thermomether from '../../Thermomether/Thermomether'
+import propTypes from 'prop-types'
 
 
-const Kitchen = () => {
+const Room = ({name, data, convertToFahrenheit, tempF}) => {
+  useEffect(() => {
+    convertToFahrenheit(+data.temperature)
+  }, [])
+
   return (
     <div>
-      <h1 className={`${styles.title} content-title`}>Kitchen</h1>
+      <h1 className={`${styles.title} content-title`}>{name}</h1>
       <div className={styles.climate}>
         <div className={styles.climate__item}>
           <div className={styles.info}>
-            <span className={styles.info__text}>Room’s Temperature</span>
-            <span className={styles.info__numbers}>+23.5°C</span>
-            <span className={styles.info__numbers}>74.3°F</span>
+            <div className={styles.info__text}>Room’s Temperature</div>
+            <span className={styles.info__numbers}>+{data.temperature} <span>&#176;C</span> </span>
+            <span className={styles.info__numbers}>{tempF} <span>&#176;F</span></span>
           </div>
-          {/* <div className={styles.thermomether}>
-            <div className={`${styles.termometherWrapper} termomether-wrapper--red`}>
-              <div className={styles.termIcon}>
-                <ThermometherIcon/>
-              </div>
-            </div>
-          </div> */}
-
         <Thermomether icon={<ThermometherIcon/>} 
-                      cssStyles={
-                                 {width: 76, height: 176, background: "#FFE5E5"}} 
-                      value={null}/>
+                      bgColor="#FFE5E5"
+                      value={data.temperature}
+                      scaleColor="var(--red)"/>
         </div>
 
         <div className={styles.climate__item}>
           <div className={styles.info}>
             <span className={styles.info__text}>Room’s Humidity</span>
-            <span className={styles.info__numbers}>40%</span>
+            <span className={styles.info__numbers}>{data.humidity}%</span>
           </div>
           <Thermomether icon={<DropIcon/>} 
-                      cssStyles={
-                                 {width: 76, height: 176, background: "#CAEEEF"}} 
-                      value={null}/>
+                      bgColor="#CAEEEF"
+                      value={data.humidity}
+                      scaleColor="var(--blue)"/>
         </div>
 
         <div className={styles.climate__item}>
           <div className={styles.info}>
             <span className={styles.info__text}>Room’s Lightning</span>
-            <span className={styles.info__numbers}>86%</span>
+            <span className={styles.info__numbers}>{data.lightning}%</span>
           </div>
           <Thermomether icon={<LightIcon/>} 
-                      cssStyles={
-                                 {width: 76, height: 176, backgroundColor: "#C5CAE3"}} 
-                      value={null}/>
+                      bgColor="#C5CAE3"
+                      value={data.lightning}
+                      scaleColor="var(--dark-blue)"/>
         </div>
       </div>
-      <div className={styles.device}>
+      <div className={`${styles.contentDevice} ${styles.device}`}>
         <h2 className={`content-subtitle ${styles.subtitle}`}>Devices</h2>
         <div className={styles.deviceWrapper}>
           <Device deviceName="Fridge" deviceIcon={<FridgeIcon/>}/>
@@ -70,4 +66,13 @@ const Kitchen = () => {
   )
 }
 
-export default Kitchen
+Room.propTypes = {
+  data: propTypes.object.isRequired
+}
+
+Room.defaultProps = {
+  data: {},
+  name: '---'
+}
+
+export default Room

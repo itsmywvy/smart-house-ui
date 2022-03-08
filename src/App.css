@@ -33,7 +33,7 @@ a {
   grid-template-rows: 118px 1fr;
   grid-template-columns: 172px 1fr;
   overflow: hidden;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
 }
 
@@ -97,4 +97,19 @@ a {
   background: #ffffff;
   border-radius: 15px;
   box-shadow: inset 7px 10px 12px #f0f0f0;
+ }
+
+ @media (max-width: 375px) {
+   .page {
+     display: flex;
+     padding: 0 15px;
+     overflow: auto;
+   }
+   .main {
+     position: static;
+     padding: 0;
+   }
+   .content-title {
+     font-size: 30px;
+   }
  }

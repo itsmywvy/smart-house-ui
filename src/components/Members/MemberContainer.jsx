@@ -1,21 +1,21 @@
+import { useEffect } from 'react';
 import {connect} from 'react-redux'
-import { addMemberAction } from '../../redux/member-reducer';
+import { addMember, getMembers } from '../../redux/member-reducer';
 import Members from './Members'
+
+const MemberContainer = (props) => {
+  useEffect(() => {
+    props.getMembers()
+  })
+
+  return <Members {...props}/>
+}
 
 const mapStateToProps = (state) => {
   return {
-    data: state.data.members
+    members: state.membersPage.members
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addMember: () => {
-      dispatch(addMemberAction())
-    }
-  }
-}
+ export default connect(mapStateToProps, {addMember, getMembers})(MemberContainer)
 
-const MemberContainer = connect(mapStateToProps, mapDispatchToProps)(Members)
-
-export default MemberContainer

@@ -3,12 +3,12 @@ import { NavLink } from 'react-router-dom'
 
 import styles from './Sidebar.module.css'
 import logo from '../../assets/images/logo.png'
-import roomsIcon from '../../assets/images/home.svg'
-import securityIcon from '../../assets/images/security.svg'
-import statIcon from '../../assets/images/statistics.svg'
-import memberIcon from '../../assets/images/members.svg'
-import billIcon from '../../assets/images/billing.svg'
-import { BillingIcon, HomeIcon, MembersIcon, SecurityIcon, StatisticsIcon } from '../SvgIcons'
+
+import {ReactComponent as HomeIcon} from '../../assets/images/home.svg'
+import {ReactComponent as SecurityIcon} from '../../assets/images/security.svg'
+import {ReactComponent as StatisticsIcon} from '../../assets/images/statistics.svg'
+import {ReactComponent as MembersIcon} from '../../assets/images/members.svg'
+import {ReactComponent as BillingIcon} from '../../assets/images/billing.svg'
 
 
 const Sidebar = () => {
@@ -23,7 +23,7 @@ const Sidebar = () => {
             <NavLink to="/rooms" 
                      activeClassName={styles.activeLink} 
                      className={styles.listItem__link}>
-              <HomeIcon/>
+              <HomeIcon />
               <span className={styles.listItem__text}>Rooms</span>
             </NavLink>
           </li>

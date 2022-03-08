@@ -1,12 +1,12 @@
 import { Route } from 'react-router';
 import './App.css';
-import Billing from './components/Billing/Billing';
+import BillingContainer from './components/Billing/BillingContainer';
 import Header from './components/Header/Header';
-import Home from './components/Home/Home';
+import HomeContainer from './components/Home/HomeContainer';
 import MemberContainer from './components/Members/MemberContainer';
-import Rooms from './components/Rooms/Rooms';
+import RoomsContainer from './components/Rooms/RoomsContainer';
 import Sidebar from './components/Sidebar/Sidebar';
-import Statistics from './components/Statistics/Statistics';
+import StatisticsContainer from './components/Statistics/StatisticsContainer';
 
 function App() {
   return (
@@ -14,10 +14,10 @@ function App() {
       <Sidebar/>
       <main className="main">
         <Header/>
-        <Route path="/home" render={() => <Home />}/>
-        <Route path="/rooms" render={() => <Rooms/>}/>
-        <Route path="/statistics" render={() => <Statistics/>}/>
-        <Route path="/billing" render={() => <Billing/>}/>
+        <Route path="/home" render={() => <HomeContainer/>}/>
+        <Route path="/rooms" render={() => <RoomsContainer/>}/>
+        <Route path="/statistics" render={() => <StatisticsContainer/>}/>
+        <Route path="/billing" render={() => <BillingContainer/>}/>
         <Route path="/members" render={() => <MemberContainer/>}/>
       </main>
       

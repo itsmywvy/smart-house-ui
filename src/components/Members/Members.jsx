@@ -1,20 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { AddMemberIcon } from '../SvgIcons'
 import MemberCard from './MemberCard/MemberCard'
-
+import Modal from '../UI/Modal/Modal'
 
 import styles from './Members.module.css'
 
 const Members = (props) => {
-  debugger
-  const cards = props.data.map(elem => {
+  const [modal, setModal] = useState(false)
+
+  const cards = props.members.map(elem => {
     return <MemberCard 
               id={elem.id}
-              name={elem.name}
-              avatarSrc={elem.avatarSrc}
-              role={elem.role}
-              status={elem.status}
-              room={elem.room}/>
+              firstName={elem.firstName}
+              lastName={elem.lastName}
+              avatar={elem.avatar}
+              membership={elem.membership}
+              location={elem.homeLocation}
+              status={elem.homeStatus}
+              room={elem.room}
+              key={elem.id + elem.firstName}
+              />
   })
 
   return (
@@ -23,11 +28,12 @@ const Members = (props) => {
         <div className={styles.membersCards}>
           {cards}
           	<div className={`${styles.card} ${styles.emptyCard}`}>
-	            <button className="btn btn-add" onClick={props.addMember}>
+	            <button className="btn btn-add" onClick={() => setModal(true)}>
 	              <AddMemberIcon/>
 	            </button>
         		</div>
       	</div>
+        <Modal visible={modal} setVisible={setModal}/>
    	</div>
   )
 }

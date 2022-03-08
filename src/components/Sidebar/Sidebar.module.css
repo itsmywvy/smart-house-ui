@@ -2,6 +2,7 @@
   grid-area: nav;
   background-color: #65bdc0;
   padding: 36px 15px 0 22px;
+  position: relative;
 }
 
 .logo {
@@ -15,11 +16,14 @@
 }
 
 .sidebar__logo {
-  margin-bottom: 117px;
+  /* margin-bottom: 117px; */
 }
 
 .nav {
-  margin-left: -60px;
+  /* margin-left: -60px; */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .navList {
@@ -28,6 +32,7 @@
   justify-content: center;
   align-items: center;
   color: rgba(255, 245, 245, 0.65);
+  fill-opacity: 0.65;
 }
 
 .listItem:not(:first-child) {
@@ -48,8 +53,33 @@
 
 .activeLink {
   color: #FFF5F5;
+  fill-opacity: 1;
 }
 
-.icon{
-  fill-opacity: 1.0 !important;
+@media (max-width: 375px) {
+  .sidebar {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 50px;
+    font-size: 0;
+    padding: 0 30px;
+  }
+  .logo {
+    display: none;
+  }
+  .nav {
+    margin: 0;
+    display: flex;
+    flex: 1;
+  }
+  .navList {
+    flex-direction: row;
+  }
+  .listItem:not(:first-child) {
+    margin-top: 0;
+  }
 }
