@@ -1,26 +1,29 @@
+import { Suspense, lazy } from 'react';
 import { Route } from 'react-router';
-import './App.css';
-import BillingContainer from './components/Billing/BillingContainer';
+import './App.scss';
+import Billing from './pages/Billing';
 import Header from './components/Header/Header';
-import HomeContainer from './components/Home/HomeContainer';
-import MemberContainer from './components/Members/MemberContainer';
-import RoomsContainer from './components/Rooms/RoomsContainer';
+import Home from './pages/Home';
+import MemberContainer from './pages/Members/MemberContainer';
+import Rooms from './pages/Rooms';
 import Sidebar from './components/Sidebar/Sidebar';
-import StatisticsContainer from './components/Statistics/StatisticsContainer';
+import StatisticsContainer from './pages/Statistics/StatisticsContainer';
+import Preloader from './components/common/Preloader/Preloader';
 
 function App() {
   return (
-    <div className="page">
-      <Sidebar/>
+    <div className="main-container">
+      <Sidebar />
+      <Header />
       <main className="main">
-        <Header/>
-        <Route path="/home" render={() => <HomeContainer/>}/>
-        <Route path="/rooms" render={() => <RoomsContainer/>}/>
-        <Route path="/statistics" render={() => <StatisticsContainer/>}/>
-        <Route path="/billing" render={() => <BillingContainer/>}/>
-        <Route path="/members" render={() => <MemberContainer/>}/>
+        <div className="container">
+          <Route path="/home" render={() => <Home />} />
+          <Route path="/rooms" render={() => <Rooms />} />
+          <Route path="/statistics" render={() => <StatisticsContainer />} />
+          <Route path="/billing" render={() => <Billing />} />
+          <Route path="/members" render={() => <MemberContainer />} />
+        </div>
       </main>
-      
     </div>
   );
 }

@@ -1,12 +1,8 @@
-import React from 'react'
-import styles from './Box.module.css'
+import React from 'react';
+import styles from './Box.module.scss';
 
-const Box = ({children}) => {
-  return (
-    <div className={styles.boxWrapper}>
-      {children}
-    </div>
-  )
-}
+const Box = ({ children }) => {
+  return <div className={styles.box}>{children}</div>;
+};
 
-export default Box
+export default Box;

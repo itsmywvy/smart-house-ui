@@ -1,43 +1,43 @@
 import React from 'react';
 
-import styles from './Thermomether.module.css'
+import styles from './Thermomether.module.scss';
 
-const Thermomether = (props) => {
+const Thermomether = ({ icon, children, value, scaleColor, bgColor }) => {
   const wrapStyles = {
-    background: props.bgColor
-  }
+    background: bgColor,
+  };
 
   const scaleStyle = {
-    height: props.value + '%',
-    background: props.scaleColor,
+    height: value + '%',
+    background: scaleColor,
     position: 'absolute',
     bottom: 0,
     right: 0,
     width: '100%',
-    zIndex: -1
-  }
+    zIndex: -1,
+  };
 
-  const fadeInScale = 
-    `
+  const fadeInScale = `
       @keyframes scaleAnim {
         from {
           height: 0%;
         }
         to {
-          height: ${props.value};
+          height: ${value};
         }
       }
-    `
+    `;
 
   return (
     <div className={styles.termometherWrapper}>
       <div className={styles.termomether} style={wrapStyles}>
-        {props.icon ||  <span className={styles.temperature}>{props.children}</span>}
-       
-        <div className={styles.scale} style={scaleStyle}></div>
+        {icon}
+        <div className={styles.scale} style={scaleStyle}>
+          {children}
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Thermomether
+export default Thermomether;
