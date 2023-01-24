@@ -7,7 +7,6 @@ export const fetchRooms = createAsyncThunk('users/fetch', async (thunkAPI) => {
 });
 
 const initialState = {
-  currentRoom: 'bedroom',
   isFetching: false,
   error: '',
   data: [],
@@ -19,7 +18,7 @@ export const roomsSlice = createSlice({
   initialState,
   reducers: {
     convertToFahrenheit: (state, { payload }) => {
-      state.temperatureF = Math.ceil((payload.temperature * 9) / 5 + 32);
+      state.temperatureF = Math.ceil((payload * 9) / 5 + 32);
     },
   },
   extraReducers: (builder) => {

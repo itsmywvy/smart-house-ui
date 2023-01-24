@@ -22,7 +22,7 @@ const Header = () => {
               <Notification />
             </div>
             <div className={styles.headerBtn}>
-              <Link to="/home" className="btn">
+              <Link to="/" className="btn">
                 <img src={userIcon} alt="" />
               </Link>
             </div>

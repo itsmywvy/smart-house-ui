@@ -16,8 +16,11 @@ const Sidebar = () => {
           <li className={styles.listItem}>
             <NavLink
               to="/rooms"
-              activeClassName={styles.activeLink}
-              className={styles.listItem__link}>
+              className={({ isActive }) =>
+                isActive
+                  ? [styles.listItem__link, styles.activeLink].join(' ')
+                  : styles.listItem__link
+              }>
               <HomeIcon />
               <span className={styles.listItem__text}>Rooms</span>
             </NavLink>
@@ -25,8 +28,11 @@ const Sidebar = () => {
           <li className={styles.listItem}>
             <NavLink
               to="/security"
-              className={styles.listItem__link}
-              activeClassName={styles.activeLink}>
+              className={({ isActive }) =>
+                isActive
+                  ? [styles.listItem__link, styles.activeLink].join(' ')
+                  : styles.listItem__link
+              }>
               <SecurityIcon />
               <span className={styles.listItem__text}>Security</span>
             </NavLink>
@@ -34,8 +40,11 @@ const Sidebar = () => {
           <li className={styles.listItem}>
             <NavLink
               to="/statistics"
-              className={styles.listItem__link}
-              activeClassName={styles.activeLink}>
+              className={({ isActive }) =>
+                isActive
+                  ? [styles.listItem__link, styles.activeLink].join(' ')
+                  : styles.listItem__link
+              }>
               <StatisticsIcon />
               <span className={styles.listItem__text}>Statistics</span>
             </NavLink>
@@ -43,8 +52,11 @@ const Sidebar = () => {
           <li className={styles.listItem}>
             <NavLink
               to="members"
-              className={styles.listItem__link}
-              activeClassName={styles.activeLink}>
+              className={({ isActive }) =>
+                isActive
+                  ? [styles.listItem__link, styles.activeLink].join(' ')
+                  : styles.listItem__link
+              }>
               <MembersIcon />
               <span className={styles.listItem__text}>Members</span>
             </NavLink>
@@ -52,8 +64,11 @@ const Sidebar = () => {
           <li className={styles.listItem}>
             <NavLink
               to="/billing"
-              className={styles.listItem__link}
-              activeClassName={styles.activeLink}>
+              className={({ isActive }) =>
+                isActive
+                  ? [styles.listItem__link, styles.activeLink].join(' ')
+                  : styles.listItem__link
+              }>
               <BillingIcon />
               <span className={styles.listItem__text}>Billing</span>
             </NavLink>
