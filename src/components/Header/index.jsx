@@ -4,7 +4,7 @@ import styles from './Header.module.scss';
 import settingIcon from '../../assets/images/settings.svg';
 import userIcon from '../../assets/images/user.svg';
 import { Link } from 'react-router-dom';
-import Notification from '../Notification/Notification';
+import Notification from '../Notification';
 
 const Header = () => {
   return (

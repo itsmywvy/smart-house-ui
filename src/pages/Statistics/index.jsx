@@ -17,28 +17,28 @@ const Statistics = (props) => {
       <div className={`${styles.gridItem} ${styles.gridItem__elec}`}>
         <h2 className={`content-subtitle ${styles.controls__subtitle}`}>Electricity</h2>
         <div className={styles.blockWrapper}>
-          <Line data={props.electricity} options={props.options.optionsLine} id="electricity" />
+          {/* <Line data={props.electricity} options={props.options.optionsLine} id="electricity" /> */}
         </div>
       </div>
       <div className={`${styles.gridItem} ${styles.gridItem__water}`}>
         <h2 className={`content-subtitle ${styles.controls__subtitle}`}>Water</h2>
         <div className={styles.blockWrapper}>
-          <Line data={props.water} options={props.options.optionsLine} id="water" />
+          {/* <Line data={props.water} options={props.options.optionsLine} id="water" /> */}
         </div>
       </div>
       <div className={`${styles.gridItem} ${styles.gridItem__waste}`}>
         <h2 className={`content-subtitle ${styles.controls__subtitle}`}>Waste Management</h2>
         <div className={styles.blockWrapper}>
-          <Line data={props.waste} options={props.options.optionsLine} id="waste" />
+          {/* <Line data={props.waste} options={props.options.optionsLine} id="waste" /> */}
         </div>
       </div>
       <div className={`${styles.gridItem} ${styles.gridItem__sorting}`}>
         <h2 className={`content-subtitle ${styles.controls__subtitle}`}>Sorting</h2>
         <div className={styles.blockWrapper}>
           <div className={styles.sortingDate}>
-            {`${props.water.labels[new Date().getMonth() + 1]}, ${new Date().getUTCFullYear()}`}
+            {/* {`${props.water.labels[new Date().getMonth() + 1]}, ${new Date().getUTCFullYear()}`} */}
           </div>
-          <Doughnut data={props.sorting} id="sort" options={props.options.optionsDoughnut} />
+          {/* <Doughnut data={props.sorting} id="sort" options={props.options.optionsDoughnut} /> */}
         </div>
       </div>
       <div className={`${styles.gridItem} ${styles.gridItem__devices}`}>

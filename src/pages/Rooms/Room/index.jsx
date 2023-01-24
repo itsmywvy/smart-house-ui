@@ -1,5 +1,5 @@
 import React from 'react';
-import Device from '../../../components/Device/Device';
+import Device from '../../../components/Device';
 import styles from './Room.module.scss';
 import {
   FridgeIcon,
@@ -14,10 +14,10 @@ import {
   DishwasherIcon,
   StoveIcon,
 } from '../../../components/SvgIcons';
-import Thermomether from '../../../components/Thermomether/Thermomether';
+import Thermomether from '../../../components/Thermomether';
 import propTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { convertToFahrenheit } from '../../../features/rooms/roomsSlice';
+import { convertToFahrenheit } from '../../../features/roomsSlice';
 import { useParams } from 'react-router-dom';
 
 const Room = () => {

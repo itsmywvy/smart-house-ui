@@ -1,8 +1,8 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import styles from './Billing.module.css';
-import CurrentInvoice from '../../components/CurrentInvoice/CurrentInvoice';
-import Preloader from '../../components/common/Preloader/Preloader';
+import CurrentInvoice from '../../components/CurrentInvoice';
+import Preloader from '../../components/common/Preloader';
 import { useSelector } from 'react-redux';
 
 const Billing = (props) => {

@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './Home.module.scss';
 import { ThermometherIcon, UserIcon, CloudsIcon } from '../../components/SvgIcons';
-import Thermomether from '../../components/Thermomether/Thermomether';
-import Diagram from '../../components/Diagram/Diagram';
+import Thermomether from '../../components/Thermomether';
+import Diagram from '../../components/Diagram';
 import { useSelector, useDispatch } from 'react-redux';
-import Clock from '../../components/Clock/Clock';
-import Box from '../../components/common/Box/Box';
-import { fetchMembers } from '../../features/members/membersSlice';
-import Shortcuts from '../../components/Shortcuts/Shortcuts';
+import Clock from '../../components/Clock';
+import Box from '../../components/common/Box';
+import { fetchMembers } from '../../features/membersSlice';
+import Shortcuts from '../../components/Shortcuts';
 
 const Home = () => {
   console.log('render');

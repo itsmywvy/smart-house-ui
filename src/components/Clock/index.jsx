@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setTime } from '../../features/home/homeSlice';
+import { setTime } from '../../features/homeSlice';
 import styles from './Clock.module.scss';
 
 const Clock = () => {

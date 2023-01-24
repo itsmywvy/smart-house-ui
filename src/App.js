@@ -2,15 +2,15 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
 import Billing from './pages/Billing';
-import Header from './components/Header/Header';
+import Header from './components/Header';
 import Home from './pages/Home';
 import Member from './pages/Members';
 import Rooms from './pages/Rooms';
-import Sidebar from './components/Sidebar/Sidebar';
+import Sidebar from './components/Sidebar';
 import Statistics from './pages/Statistics';
 import Room from './pages/Rooms/Room';
 import { useDispatch } from 'react-redux';
-import { fetchRooms } from './features/rooms/roomsSlice';
+import { fetchRooms } from './features/roomsSlice';
 
 function App() {
   const dispatch = useDispatch();

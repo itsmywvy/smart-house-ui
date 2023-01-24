@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AddMemberIcon } from '../../components/SvgIcons';
-import MemberCard from './MemberCard/MemberCard';
-import Modal from '../../components/UI/Modal/Modal';
+import MemberCard from './MemberCard';
+import Modal from '../../components/UI/Modal';
 
 import styles from './Members.module.css';
 

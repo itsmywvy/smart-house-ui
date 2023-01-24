@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { billingAPI, membersAPI, roomsAPI } from '../../api/api';
+import { billingAPI, membersAPI, roomsAPI } from '../api/api';
 
 export const fetchChartData = createAsyncThunk('users/fetchChartData', async (thunkAPI) => {
   const response = await billingAPI.getChartData();

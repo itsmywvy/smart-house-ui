@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Shortcuts.module.scss';
 
-import { IntercomIcon, MusicIcon, WifiIcon } from '../../components/SvgIcons';
+import { IntercomIcon, MusicIcon, WifiIcon } from '../SvgIcons';
 
 const Shortcuts = () => {
   return (

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { membersAPI } from '../../api/api';
+import { membersAPI } from '../api/api';
 
 export const fetchMembers = createAsyncThunk('users/fetch', async (thunkAPI) => {
   const response = await membersAPI.getMembers();
