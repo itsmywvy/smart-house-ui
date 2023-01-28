@@ -37,7 +37,7 @@ const Room = () => {
     console.log(params.roomName);
 
     dispatch(convertToFahrenheit(currentRoom.temperature));
-  }, [rooms, params.roomName]);
+  }, [params.roomName]);
 
   return (
     <div>

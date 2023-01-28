@@ -18,7 +18,7 @@ const Header = () => {
                 <img src={settingIcon} alt="" />
               </Link>
             </div>
-            <div className={styles.headerBtn}>
+            <div className={[styles.headerBtn]}>
               <Notification />
             </div>
             <div className={styles.headerBtn}>

@@ -5,7 +5,14 @@ import { NavLink } from 'react-router-dom';
 import { BedroomIcon, KitchenIcon, LivingRoomIcon, BathroomIcon } from '../../components/SvgIcons';
 import styles from './Rooms.module.scss';
 
+import { fetchRooms } from '../../features/roomsSlice';
+
 const Rooms = () => {
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(fetchRooms());
+  }, []);
+
   return (
     <div className={styles.room}>
       <div className={styles.roomContent}>

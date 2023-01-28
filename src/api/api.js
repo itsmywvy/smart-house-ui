@@ -21,3 +21,14 @@ export const billingAPI = {
   getChartData: () => instance.get('/billingChart').then((res) => res.data),
   payBill: (id) => instance.put(`/billingHistory/${id}`),
 };
+
+export const statisticsAPI = {
+  getStatisticsData: () =>
+    axios
+      .get(
+        'https://www.random.org/integers/?num=24&min=30&max=100&col=1&base=10&format=plain&rnd=new',
+      )
+      .then((res) => {
+        return res.data.trim().split('\n');
+      }),
+};

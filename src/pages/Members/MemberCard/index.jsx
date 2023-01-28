@@ -1,7 +1,7 @@
 import React from 'react';
 import { MessageIcon, MembersIcon } from '../../../components/SvgIcons';
 
-import styles from '../Members.module.css';
+import styles from './MemberCard.module.scss';
 
 const MemberCard = (props) => {
   return (

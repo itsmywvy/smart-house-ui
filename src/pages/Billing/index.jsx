@@ -1,16 +1,55 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-import styles from './Billing.module.css';
+import styles from './Billing.module.scss';
 import CurrentInvoice from '../../components/CurrentInvoice';
 import Preloader from '../../components/common/Preloader';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { fetchChartData, fetchHistoryData } from '../../features/billingSlice';
 
 const Billing = (props) => {
+  const options = {
+    optionsLine: {
+      responsive: false,
+      plugins: {
+        legend: {
+          align: 'end',
+          labels: {
+            usePointStyle: true,
+            font: {
+              size: 19,
+              family: 'Lack Regular',
+            },
+            padding: 30,
+          },
+        },
+      },
+      elements: {
+        line: {
+          fill: true,
+        },
+        point: {
+          radius: 0,
+        },
+      },
+      layout: {
+        padding: {
+          left: 20,
+          right: 20,
+          top: 18,
+          bottom: 18,
+        },
+      },
+    },
+  };
+  const dispatch = useDispatch();
   const history = useSelector((state) => state.billing.history);
   const invoicingChart = useSelector((state) => state.billing.invoicingChart);
-  const options = useSelector((state) => state.billing.options);
 
-  console.log(history);
+  React.useEffect(() => {
+    dispatch(fetchHistoryData());
+    dispatch(fetchChartData());
+  }, []);
 
   const tableElems = history.map((elem, i) => {
     const isPaid = elem.status ? (

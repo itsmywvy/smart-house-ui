@@ -84,6 +84,7 @@ export const billingSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    // Get Chart Data
     builder.addCase(fetchChartData.pending, (state) => {
       state.isFetching = true;
       state.error = null;
@@ -91,17 +92,35 @@ export const billingSlice = createSlice({
 
     builder.addCase(fetchChartData.fulfilled, (state, { payload }) => {
       state.invoicingChart.datasets.map((item) => {
-        payload.map((obj) => {
-          return {
-            ...item,
-            data: [...obj.data],
-            label: obj.label,
-          };
-        });
+        // payload.map((obj) => Object.assign(obj, { ...item }));
+        item.data.push([...payload.data]);
+        // {
+        // return {
+        //   ...item,
+        //   data: [...obj.data],
+        //   label: obj.label,
+        // };
+        // }
+        // );
       });
     });
 
     builder.addCase(fetchChartData.rejected, (state, { payload }) => {
+      if (payload) state.error = payload.message;
+      state.isFetching = false;
+    });
+
+    // Get History Data
+    builder.addCase(fetchHistoryData.pending, (state) => {
+      state.isFetching = true;
+      state.error = null;
+    });
+
+    builder.addCase(fetchHistoryData.fulfilled, (state, { payload }) => {
+      state.history.push(...payload);
+    });
+
+    builder.addCase(fetchHistoryData.rejected, (state, { payload }) => {
       if (payload) state.error = payload.message;
       state.isFetching = false;
     });

@@ -24,14 +24,14 @@ const Notification = () => {
   useEffect(() => document.body.addEventListener('click', onClickOutsideButton), []);
 
   return (
-    <div>
-      <button ref={currentBtnRef} className={`${styles.button} btn`} onClick={onClickedNotify}>
+    <div className={styles['notification-wrapper']}>
+      <button ref={currentBtnRef} className="btn" onClick={onClickedNotify}>
         <img src={notifyIcon} alt="" />
       </button>
       {popUpActive && (
-        <div ref={currentWindowRef} className={styles.wrapper}>
-          <span>Haven’t got any notifications yet</span>
-        </div>
+        <ul ref={currentWindowRef} className={styles['notification-list']}>
+          <li>Haven’t got any notifications yet</li>
+        </ul>
       )}
     </div>
   );

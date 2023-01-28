@@ -10,7 +10,7 @@ import { fetchMembers } from '../../features/membersSlice';
 import Shortcuts from '../../components/Shortcuts';
 
 const Home = () => {
-  console.log('render');
+  console.log('render home');
   const dispatch = useDispatch();
   const controls = useSelector((state) => state.home.controls);
   const members = useSelector((state) => state.members.data);

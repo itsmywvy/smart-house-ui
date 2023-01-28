@@ -9,16 +9,8 @@ import Rooms from './pages/Rooms';
 import Sidebar from './components/Sidebar';
 import Statistics from './pages/Statistics';
 import Room from './pages/Rooms/Room';
-import { useDispatch } from 'react-redux';
-import { fetchRooms } from './features/roomsSlice';
 
 function App() {
-  const dispatch = useDispatch();
-
-  React.useEffect(() => {
-    dispatch(fetchRooms());
-  }, []);
-
   return (
     <div className="main-container">
       <Sidebar />
@@ -31,7 +23,6 @@ function App() {
               <Route index element={<Room />} />
               <Route path=":roomName" element={<Room />} />
             </Route>
-
             <Route path="/statistics" element={<Statistics />} />
             <Route path="/billing" element={<Billing />} />
             <Route path="/members" element={<Member />} />

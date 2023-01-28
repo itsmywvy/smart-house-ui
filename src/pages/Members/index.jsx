@@ -3,12 +3,14 @@ import { AddMemberIcon } from '../../components/SvgIcons';
 import MemberCard from './MemberCard';
 import Modal from '../../components/UI/Modal';
 
-import styles from './Members.module.css';
+import styles from './Members.module.scss';
+import { useSelector } from 'react-redux';
 
-const Members = (props) => {
+const Members = () => {
   const [modal, setModal] = useState(false);
+  const members = useSelector((state) => state.members.data);
 
-  const cards = props.members.map((elem) => {
+  const cards = members.map((elem) => {
     return (
       <MemberCard
         id={elem.id}

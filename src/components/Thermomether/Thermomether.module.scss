@@ -22,11 +22,11 @@
   /* padding: 30px 15px; */
   /* width: 76px; */
   width: 100%;
-  z-index: 12;
+  z-index: 1;
 }
 
 .scale {
-  animation: scaleAnim 2s ease  alternate;
+  animation: scaleAnim 2s ease alternate;
 }
 
 /* @keyframes scaleAnim {
