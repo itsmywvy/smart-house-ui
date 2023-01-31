@@ -2,10 +2,18 @@ import React from 'react';
 
 import styles from './Thermomether.module.scss';
 
-const Thermomether = ({ icon, children, value, scaleColor, bgColor }) => {
+interface IThermomether {
+  icon?: React.ReactNode;
+  children: React.ReactNode;
+  value: number;
+  scaleColor: string;
+  bgColor?: string;
+}
+
+const Thermomether: React.FC<IThermomether> = ({ icon, children, value, scaleColor, bgColor }) => {
   const wrapStyles = {
     background: bgColor,
-  };
+  } as React.CSSProperties;
 
   const scaleStyle = {
     height: value + '%',
@@ -15,18 +23,7 @@ const Thermomether = ({ icon, children, value, scaleColor, bgColor }) => {
     right: 0,
     width: '100%',
     zIndex: -1,
-  };
-
-  const fadeInScale = `
-      @keyframes scaleAnim {
-        from {
-          height: 0%;
-        }
-        to {
-          height: ${value};
-        }
-      }
-    `;
+  } as React.CSSProperties;
 
   return (
     <div className={styles.termometherWrapper}>

@@ -3,28 +3,35 @@ import styles from './Home.module.scss';
 import { ThermometherIcon, UserIcon, CloudsIcon } from '../../components/SvgIcons';
 import Thermomether from '../../components/Thermomether';
 import Diagram from '../../components/Diagram';
-import { useSelector, useDispatch } from 'react-redux';
 import Clock from '../../components/Clock';
 import Box from '../../components/common/Box';
-import { fetchMembers } from '../../features/membersSlice';
+import { fetchMembers } from '../../store/reducers/membersSlice';
 import Shortcuts from '../../components/Shortcuts';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
-const Home = () => {
+interface IMember {
+  homeStatus: boolean;
+  avatar: string;
+  firstName: string;
+}
+
+const Home: React.FC = () => {
   console.log('render home');
-  const dispatch = useDispatch();
-  const controls = useSelector((state) => state.home.controls);
-  const members = useSelector((state) => state.members.data);
+
+  const dispatch = useAppDispatch();
+  const controls = useAppSelector((state) => state.home.controls);
+  const members = useAppSelector((state) => state.members.data);
 
   React.useEffect(() => {
     dispatch(fetchMembers());
   }, []);
 
   const membersFiltered = members
-    .filter((obj) => obj.homeStatus === true)
-    .map((obj, i) => {
+    .filter((obj: IMember) => obj.homeStatus === true)
+    .map((obj: IMember, i) => {
       return (
         <li key={`${obj}${i}`} className={styles.membersUser}>
-          <img src={obj.avatar ? obj.avatar : UserIcon} alt="" />
+          {obj.avatar ? <img src={obj.avatar} alt="" /> : <UserIcon />}
           <span>{obj.firstName}</span>
         </li>
       );
