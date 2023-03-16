@@ -29,6 +29,7 @@ export const roomsSlice = createSlice({
 
     builder.addCase(fetchRooms.fulfilled, (state, { payload }) => {
       state.data.push(...payload);
+      state.isFetching = false;
     });
 
     builder.addCase(fetchRooms.rejected, (state, { payload }) => {

@@ -6,4 +6,18 @@
   display: flex;
   flex-wrap: wrap;
   gap: 46px;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    justify-content: start;
+  }
+}
+
+.emptyCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px dashed #e0e0e0;
+  border-radius: 41px;
+  padding: 37px 26px 10px;
 }

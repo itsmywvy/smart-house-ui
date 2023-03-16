@@ -1,0 +1,10 @@
+.subtitle {
+  font-size: 1.25rem;
+  line-height: 29px;
+  letter-spacing: 0.09em;
+  color: rgba(29, 35, 67, 0.75);
+
+  @media (min-width: 640px) {
+    font-size: 1.5rem;
+  }
+}

@@ -19,7 +19,7 @@ export const membersAPI = {
 export const billingAPI = {
   getHistoryData: () => instance.get('/billingHistory').then((res) => res.data),
   getChartData: () => instance.get('/billingChart').then((res) => res.data),
-  payBill: (id) => instance.put(`/billingHistory/${id}`),
+  payInvoice: (id) => instance.put(`/billingHistory/${id}`, { status: true }),
 };
 
 export const statisticsAPI = {

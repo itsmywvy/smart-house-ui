@@ -30,38 +30,57 @@ a {
 }
 
 .container {
-  max-width: calc(1014px - 40px);
   padding: 0 20px;
   margin: 0 auto;
   width: 100%;
+
+  @media (min-width: 640px) {
+    max-width: 640px;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 768px;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 1024px;
+  }
+
+  @media (min-width: 1400px) {
+    max-width: 1400px;
+  }
 }
 
 .main-container {
   display: grid;
   grid-template-columns: 107px 1fr;
   grid-template-rows: 105px 1fr;
-  // width: 100vw;
   position: relative;
   z-index: 1;
+
+  @media (max-width: 1024px) {
+    display: block;
+  }
 }
 
 .main {
-  height: calc(100vh - 105px);
+  height: calc(100vh - 144px);
   width: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
   grid-area: 2 / 2 / 3 / 3;
   background-color: #fff;
   border-radius: 0 0 0 60px;
-  padding-bottom: 32px;
-}
+  padding-bottom: 60px;
 
-.content-title {
-  font-size: 48px;
-  line-height: 58px;
-  letter-spacing: 0.09em;
-  color: #1d2343;
-  text-transform: capitalize;
+  @media (max-width: 1024px) {
+    border-radius: 0;
+  }
+
+  @media (min-width: 1024px) {
+    height: calc(100vh - 105px);
+    padding-bottom: 0;
+  }
 }
 
 .btn {
@@ -70,11 +89,15 @@ a {
   cursor: pointer;
 }
 
-.content-subtitle {
-  font-size: 24px;
+.subtitle {
+  font-size: 1.25rem;
   line-height: 29px;
   letter-spacing: 0.09em;
   color: rgba(29, 35, 67, 0.75);
+
+  @media (min-width: 640px) {
+    font-size: 1.5rem;
+  }
 }
 
 .block {
@@ -89,6 +112,23 @@ a {
     background: var(--blue);
   }
 }
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+
+  @media (min-width: 640px) {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+// ===Scroll Styles===
 
 ::-webkit-scrollbar {
   width: 7px;
@@ -107,17 +147,12 @@ a {
   box-shadow: inset 7px 10px 12px #f0f0f0;
 }
 
+// /===Scroll Styles===
+
 @media (max-width: 375px) {
   .page {
     display: flex;
     padding: 0 15px;
     overflow: auto;
-  }
-  .main {
-    position: static;
-    padding: 0;
-  }
-  .content-title {
-    font-size: 30px;
   }
 }

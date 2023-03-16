@@ -1,4 +1,5 @@
 export interface IMember {
+  room: any;
   firstName: string;
   lastName: string;
   avatar: string;

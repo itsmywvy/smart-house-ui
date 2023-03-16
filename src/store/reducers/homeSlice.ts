@@ -15,11 +15,12 @@ export const homeSlice = createSlice({
   initialState,
   reducers: {
     setTime: (state) => {
-      state.time = new Intl.DateTimeFormat('en', {
-        hour: 'numeric',
-        minute: 'numeric',
-      })
-        .format()
+      state.time = new Date()
+        .toLocaleString('en-GB', {
+          hour: 'numeric',
+          minute: 'numeric',
+          hourCycle: 'h12',
+        })
         .toLowerCase();
     },
   },

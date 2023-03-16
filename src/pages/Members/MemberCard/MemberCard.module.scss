@@ -1,13 +1,8 @@
 .card {
-  width: 252px;
-  height: 314px;
   border-radius: 41px;
   overflow: hidden;
   position: relative;
-}
-
-.card:not(:last-child) {
-  margin-right: 46px;
+  max-width: 252px;
 }
 
 .cardTop {

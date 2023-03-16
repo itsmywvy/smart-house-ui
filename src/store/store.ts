@@ -17,6 +17,10 @@ export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
     // middleware: [thunk],
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: false,
+      }),
   });
 };
 

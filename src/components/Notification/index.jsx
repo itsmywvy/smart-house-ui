@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { NotifyIcon } from '../SvgIcons';
 import styles from './Notification.module.scss';
-import notifyIcon from '../../assets/images/notify.svg';
 
 const Notification = () => {
   const [popUpActive, setPopUpActive] = useState(false);
@@ -26,7 +26,7 @@ const Notification = () => {
   return (
     <div className={styles['notification-wrapper']}>
       <button ref={currentBtnRef} className="btn" onClick={onClickedNotify}>
-        <img src={notifyIcon} alt="" />
+        <NotifyIcon />
       </button>
       {popUpActive && (
         <ul ref={currentWindowRef} className={styles['notification-list']}>

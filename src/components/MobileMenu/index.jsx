@@ -1,31 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { MenuContext } from '../../contexts/menuContext';
+import styles from './MobileMenu.module.scss';
 
-import styles from './Sidebar.module.scss';
-import logo from '../../assets/images/logo.png';
-
-import {
-  BillingIcon,
-  HomeIcon,
-  MembersIcon,
-  SecurityIcon,
-  StatisticsIcon,
-} from '../../components/SvgIcons';
-import Logo from '../Logo';
-
-const navLinks = [
-  { url: '/rooms/bedroom', name: 'Rooms', icon: <HomeIcon /> },
-  { url: '/security', name: 'Security', icon: <SecurityIcon /> },
-  { url: '/statistics', name: 'Statistics', icon: <StatisticsIcon /> },
-  { url: '/members', name: 'Members', icon: <MembersIcon /> },
-  { url: '/billing', name: 'Billing', icon: <BillingIcon /> },
-];
-
-const Sidebar = ({ width }) => {
+const MobileMenu = () => {
+  const navLinks = React.useContext(MenuContext);
   return (
-    <aside className={styles.sidebar}>
-      {width > 1024 && <Logo />}
+    <div className={styles.mobileMenu}>
       <nav className={styles.nav}>
         <ul className={styles.navList}>
           {navLinks.map((link, i) => (
@@ -44,8 +25,8 @@ const Sidebar = ({ width }) => {
           ))}
         </ul>
       </nav>
-    </aside>
+    </div>
   );
 };
 
-export default Sidebar;
+export default MobileMenu;

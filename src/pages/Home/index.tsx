@@ -15,7 +15,7 @@ interface IMember {
   firstName: string;
 }
 
-const Home: React.FC = () => {
+const Home = () => {
   console.log('render home');
 
   const dispatch = useAppDispatch();
@@ -31,7 +31,7 @@ const Home: React.FC = () => {
     .map((obj: IMember, i) => {
       return (
         <li key={`${obj}${i}`} className={styles.membersUser}>
-          {obj.avatar ? <img src={obj.avatar} alt="" /> : <UserIcon />}
+          {obj.avatar ? <img src={obj.avatar} alt="" /> : <UserIcon classNames="" />}
           <span>{obj.firstName}</span>
         </li>
       );

@@ -5,25 +5,28 @@ import settingIcon from '../../assets/images/settings.svg';
 import userIcon from '../../assets/images/user.svg';
 import { Link } from 'react-router-dom';
 import Notification from '../Notification';
+import { SettingsIcon, UserIcon } from '../SvgIcons';
+import Logo from '../Logo';
 
-const Header = () => {
+const Header = ({ width }) => {
   return (
     <header className={styles.header}>
       <div className="container">
         <div className={styles.header__inner}>
-          <input className={styles.search} type="text" placeholder="Search" />
+          {width < 1024 ? <Logo /> : null}
+          {/* <input className={styles.search} type="text" placeholder="Search" /> */}
           <div className={styles.buttons}>
             <div className={styles.headerBtn}>
               <Link to="/settings" className="btn">
-                <img src={settingIcon} alt="" />
+                <SettingsIcon classNames={styles.headerIcon} />
               </Link>
             </div>
-            <div className={[styles.headerBtn]}>
+            <div className={styles.headerBtn}>
               <Notification />
             </div>
             <div className={styles.headerBtn}>
               <Link to="/" className="btn">
-                <img src={userIcon} alt="" />
+                <UserIcon classNames={styles.headerIcon} />
               </Link>
             </div>
           </div>

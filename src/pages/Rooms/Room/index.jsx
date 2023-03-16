@@ -19,6 +19,8 @@ import propTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { convertToFahrenheit } from '../../../features/roomsSlice';
 import { useParams } from 'react-router-dom';
+import Title from '../../../components/common/Title';
+import Subtitle from '../../../components/common/Subtitle';
 
 const Room = () => {
   const dispatch = useDispatch();
@@ -30,18 +32,18 @@ const Room = () => {
 
   React.useEffect(() => {
     rooms.find((room) => {
-      if (room?.name === params.roomName) {
+      console.log(room);
+      if (room.name === params.roomName) {
         setCurrentRoom(room);
       }
     });
-    console.log(params.roomName);
 
     dispatch(convertToFahrenheit(currentRoom.temperature));
-  }, [params.roomName]);
+  }, [, params.roomName]);
 
   return (
-    <div>
-      <h1 className={`${styles.title} content-title`}>{params.roomName}</h1>
+    <>
+      <Title classNames={styles.title}>{params.roomName}</Title>
       <div className={styles.climate}>
         <div className={styles.climate__item}>
           <div className={styles.info}>
@@ -88,7 +90,7 @@ const Room = () => {
         </div>
       </div>
       <div className={`${styles.contentDevice} ${styles.device}`}>
-        <h2 className={`content-subtitle ${styles.subtitle}`}>Devices</h2>
+        <Subtitle classNames={styles.subtitle}>Devices</Subtitle>
         <div className={styles.deviceWrapper}>
           <Device deviceName="Fridge" deviceIcon={<FridgeIcon />} />
           <Device deviceName="Kettle" deviceIcon={<KettleIcon />} />
@@ -100,17 +102,8 @@ const Room = () => {
           <Device deviceName="Indoor Grill" deviceIcon={<IndoorGrillIcon />} />
         </div>
       </div>
-    </div>
+    </>
   );
-};
-
-Room.propTypes = {
-  data: propTypes.object.isRequired,
-};
-
-Room.defaultProps = {
-  data: {},
-  name: '---',
 };
 
 export default Room;

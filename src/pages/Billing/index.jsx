@@ -5,22 +5,26 @@ import CurrentInvoice from '../../components/CurrentInvoice';
 import Preloader from '../../components/common/Preloader';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { fetchChartData, fetchHistoryData } from '../../features/billingSlice';
+import { fetchChartData, fetchHistoryData, getCurrentInvoice } from '../../features/billingSlice';
+import Title from '../../components/common/Title';
+import Subtitle from '../../components/common/Subtitle';
+import Table from '../../components/Table';
 
-const Billing = (props) => {
+const Billing = () => {
   const options = {
     optionsLine: {
-      responsive: false,
+      maintainAspectRatio: false,
+      responsive: true,
       plugins: {
         legend: {
           align: 'end',
           labels: {
             usePointStyle: true,
             font: {
-              size: 19,
+              size: window.innerWidth > 530 ? 20 : 12,
               family: 'Lack Regular',
             },
-            padding: 30,
+            padding: window.innerWidth > 530 ? 30 : 8,
           },
         },
       },
@@ -33,82 +37,43 @@ const Billing = (props) => {
         },
       },
       layout: {
-        padding: {
-          left: 20,
-          right: 20,
-          top: 18,
-          bottom: 18,
-        },
+        padding: window.innerWidth > 350 ? 20 : 10,
       },
     },
   };
   const dispatch = useDispatch();
-  const history = useSelector((state) => state.billing.history);
-  const invoicingChart = useSelector((state) => state.billing.invoicingChart);
+  const { history, invoicingChart, isFetching, payStatus, currentInvoice } = useSelector(
+    (state) => state.billing,
+  );
 
   React.useEffect(() => {
     dispatch(fetchHistoryData());
     dispatch(fetchChartData());
+    dispatch(getCurrentInvoice(history));
   }, []);
-
-  const tableElems = history.map((elem, i) => {
-    const isPaid = elem.status ? (
-      <td style={{ background: 'rgba(101, 189, 192, 0.51' }}>Paid</td>
-    ) : (
-      <td style={{ background: 'rgba(238, 119, 127, 0.46' }}>Unpaid</td>
-    );
-    return (
-      <tr key={`${elem}${i}`}>
-        <td>{elem.number}</td>
-        <td>{elem.category}</td>
-        <td>{elem.month}</td>
-        <td>{elem.dueData}</td>
-        <td>{elem.amountDue}</td>
-        {isPaid}
-      </tr>
-    );
-  });
 
   return (
     <div className={styles.billing}>
-      <div className="billing-content">
-        <h1 className={`${styles.title} content-title`}>Utility Billing</h1>
-        <div className={styles.grid}>
-          <div className={styles.gridItem__history}>
-            <h2 className={`${styles.subtitle} content-subtitle`}>Invoice History</h2>
-            <div className={styles.tableWrapper}>
-              {props.isFetching ? (
-                <Preloader />
-              ) : (
-                <table className={styles.table}>
-                  <thead className={styles.tableHead}>
-                    <tr>
-                      <td>Number</td>
-                      <td>Category</td>
-                      <td>Month</td>
-                      <td>Due Date</td>
-                      <td>Amount Due</td>
-                      <td>Status</td>
-                    </tr>
-                  </thead>
-                  <tbody className={styles.tableBody}>{tableElems}</tbody>
-                </table>
-              )}
+      <Title classNames={styles.title}>Utility Billing</Title>
+      <div className={styles.billingContent}>
+        <div className={styles.billingContentItem__history}>
+          <Subtitle classNames={styles.subtitle}>Invoice History</Subtitle>
+          <div className={styles.tableWrapper}>
+            {isFetching.chartData ? <Preloader /> : <Table data={history} />}
+          </div>
+        </div>
+        <div className={styles.billingContentItem__current}>
+          <CurrentInvoice invoicingData={currentInvoice.length && currentInvoice[0]} />
+        </div>
+        <div className={styles.billingContentItem__chart}>
+          <Subtitle classNames={styles.subtitle}>Invoicing Chart</Subtitle>
+          {isFetching.chartData ? (
+            <Preloader />
+          ) : (
+            <div style={{ position: 'relative', height: '40vh' }}>
+              <Line id="currentInvoice" data={invoicingChart} options={options.optionsLine} />
             </div>
-          </div>
-          <CurrentInvoice invoicingData={history} />
-          <div className={styles.gridItem__chart}>
-            <h2 className={`${styles.subtitle} content-subtitle`}>Invoicing Chart</h2>
-            {invoicingChart.datasets.length > 0 && (
-              <Line
-                width={938}
-                height={238}
-                id="currentInvoice"
-                data={invoicingChart}
-                options={options.optionsLine}
-              />
-            )}
-          </div>
+          )}
         </div>
       </div>
     </div>

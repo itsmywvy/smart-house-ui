@@ -1,11 +1,24 @@
+.title {
+  margin-bottom: 30px;
+}
+
+.subtitle {
+  margin-bottom: 18px;
+}
+
 .grid {
-  display: grid;
-  grid-template-areas: 
-  "elec elec water water"
-  "waste waste sorting devices";
-  grid-template-columns: repeat(2, 1fr) 0.8fr 1.2fr;
-  grid-template-rows: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 30px;
+
+  @media (min-width: 1024px) {
+    display: grid;
+    grid-template-areas:
+      'elec elec water water'
+      'waste waste sorting devices';
+    grid-template-columns: repeat(2, 1fr) 0.8fr 1.2fr;
+    grid-template-rows: repeat(2, 1fr);
+  }
 }
 
 .gridItem__elec {
@@ -46,7 +59,7 @@
   font-size: 13px;
   line-height: 16px;
   letter-spacing: 0.09em;
-  color: #A3A3A3;
+  color: #a3a3a3;
 }
 
 .devices__icon {
@@ -67,11 +80,11 @@
   font-size: 9px;
   line-height: 11px;
   letter-spacing: 0.09em;
-  color: #C2C2C2;
+  color: #c2c2c2;
 }
 
 .blockWrapper {
-  background: #FFF5F5;
+  background: #fff5f5;
   box-shadow: 0px 4px 35px rgba(0, 0, 0, 0.14);
   border-radius: 30px;
   padding: 12px 12px 18px 12px;
