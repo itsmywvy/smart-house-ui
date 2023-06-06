@@ -50,29 +50,3 @@
     height: 75%;
   }
 } */
-
-.termomether.termomether--red::after {
-  content: '';
-  background: $red;
-}
-
-.termomether.termomether--blue::after {
-  content: '';
-  background: $blue;
-}
-
-.termomether.termomether--dark-blue::after {
-  background: $dark-blue;
-}
-
-.termomether--red {
-  background: #ffe5e5;
-}
-
-.termomether--blue {
-  background: #d9ecee;
-}
-
-.termomether--dark-blue {
-  background: rgba(197, 202, 227, 0.71);
-}
