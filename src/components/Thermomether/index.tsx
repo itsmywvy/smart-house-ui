@@ -26,10 +26,10 @@ const Thermomether: React.FC<IThermomether> = ({ icon, children, value, scaleCol
   } as React.CSSProperties;
 
   return (
-    <div className={styles.termometherWrapper}>
-      <div className={styles.termomether} style={wrapStyles}>
+    <div className={styles.termomether}>
+      <div className={styles['termomether-wrapper']} style={wrapStyles}>
         {icon}
-        <div className={styles.scale} style={scaleStyle}>
+        <div className={styles['termomether-wrapper__item']} style={scaleStyle}>
           {children}
         </div>
       </div>

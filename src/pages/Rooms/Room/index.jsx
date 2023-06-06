@@ -3,7 +3,6 @@ import Device from '../../../components/Device';
 import styles from './Room.module.scss';
 import {
   FridgeIcon,
-  ThermometherIcon,
   DropIcon,
   LightIcon,
   KettleIcon,
@@ -15,13 +14,15 @@ import {
   StoveIcon,
 } from '../../../components/SvgIcons';
 import Thermomether from '../../../components/Thermomether';
-import propTypes from 'prop-types';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { convertToFahrenheit, fetchRooms } from '../../../store/reducers/roomsSlice';
 import { useParams } from 'react-router-dom';
 import Title from '../../../components/common/Title';
 import Subtitle from '../../../components/common/Subtitle';
 import Preloader from '../../../components/common/Preloader';
+
+import { ReactComponent as ThermometherIcon } from '../../../assets/images/thermomether.svg';
+import Scale from '../../../components/Scale';
 
 const Room = () => {
   const { roomName } = useParams();
@@ -54,8 +55,8 @@ const Room = () => {
               {temperatureF} <span>°F</span>
             </span>
           </div>
-          <Thermomether
-            icon={<ThermometherIcon />}
+          <Scale
+            icon={<ThermometherIcon fill="#FFF5F5" fillOpacity="0.79" />}
             bgColor="#FFE5E5"
             value={room.temperature}
             scaleColor="var(--red)"
@@ -67,7 +68,7 @@ const Room = () => {
             <span className={styles.info__text}>Room’s Humidity</span>
             <span className={styles.info__numbers}>{room.humidity}%</span>
           </div>
-          <Thermomether
+          <Scale
             icon={<DropIcon />}
             bgColor="#A5C0DD"
             value={room.humidity}
@@ -80,7 +81,7 @@ const Room = () => {
             <span className={styles.info__text}>Room’s Lightning</span>
             <span className={styles.info__numbers}>{room.lightning}%</span>
           </div>
-          <Thermomether
+          <Scale
             icon={<LightIcon />}
             bgColor="#C5CAE3"
             value={room.lightning}

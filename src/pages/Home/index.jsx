@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThermometherIcon, UserIcon } from '../../components/SvgIcons';
+import { UserIcon } from '../../components/SvgIcons';
 import Thermomether from '../../components/Thermomether';
 import Diagram from '../../components/Diagram';
 import Clock from '../../components/Clock';
@@ -12,6 +12,7 @@ import { useGetUserDetailsQuery } from '../../store/reducers/authSlice';
 import Scroller from '../../components/Scroller';
 import WeatherStatus from '../../components/WeatherStatus';
 import Avatar from '../../components/common/Avatar';
+import { ReactComponent as ThermometherIcon } from '../../assets/images/thermomether.svg';
 
 import styles from './Home.module.scss';
 
@@ -115,10 +116,10 @@ const Home = () => {
             <div className={styles.controlsInfo__item}>
               <h3>Temperature</h3>
               <Thermomether
-                icon={<ThermometherIcon />}
-                scaleColor="var(--red)"
-                value={controls.temperature * 2}>
-                <span>+{controls.temperature}°C</span>
+                icon={<ThermometherIcon fill="#ee777f" fillOpacity="0.48" />}
+                scaleColor="#ee777f"
+                value={controls.temperature * 3}>
+                <span>{controls.temperature}</span>
               </Thermomether>
             </div>
           </Box>

@@ -1,10 +1,10 @@
 @import '../../../styles/variables.scss';
 
-.termomether {
+.scale {
   display: flex;
   justify-content: center;
-  max-width: 85px;
-  height: 239px;
+  min-width: 76px;
+  height: 176px;
   margin: 0 auto;
 
   position: relative;
@@ -15,47 +15,31 @@
   overflow: hidden;
 }
 
-.termomether-wrapper {
+.scale-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   width: 100%;
 
-  position: relative;
-  z-index: $index-1;
+  font-size: 20px;
+  line-height: 24px;
+  color: #fff;
+  letter-spacing: 0.03em;
 
   background: #fff;
 
+  z-index: $index-1;
+
   svg {
     position: absolute;
-    top: 20px;
+    bottom: 20px;
     z-index: $index-2;
   }
+}
 
-  &__item {
-    font-size: $step * 4;
-    letter-spacing: 0.03em;
-    line-height: 24px;
-    color: #fff;
-
-    animation: scaleAnim 2s ease alternate;
-
-    span {
-      position: absolute;
-      bottom: 60px;
-      left: 50%;
-      transform: translateX(-50%);
-
-      &::before {
-        content: '+';
-      }
-
-      &::after {
-        content: '°C';
-      }
-    }
-  }
+.scale {
+  animation: scaleAnim 2s ease alternate;
 }
 
 /* @keyframes scaleAnim {
