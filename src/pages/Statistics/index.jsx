@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { shallowEqual, useSelector } from 'react-redux';
 import { Line, Doughnut } from 'react-chartjs-2';
 import {
   FridgeIcon,
@@ -9,13 +9,13 @@ import {
   TvIcon,
   WasherIcon,
 } from '../../components/SvgIcons';
-
-import styles from './Statistics.module.scss';
 import { useDispatch } from 'react-redux';
-import { fetchStatistics } from '../../features/statisticsSlice';
+import { fetchStatistics } from '../../store/reducers/statisticsSlice';
 import Title from '../../components/common/Title';
 import Subtitle from '../../components/common/Subtitle';
-import Layout from '../../components/Layout/Layout';
+import Layout from '../../components/Layout';
+
+import styles from './Statistics.module.scss';
 
 const Statistics = () => {
   const options = {
@@ -61,10 +61,15 @@ const Statistics = () => {
     },
   };
 
-  const electricity = useSelector((state) => state.statistics.electricity);
-  const water = useSelector((state) => state.statistics.water);
-  const waste = useSelector((state) => state.statistics.waste);
-  const sorting = useSelector((state) => state.statistics.sorting);
+  const { electricity, water, waste, sorting } = useSelector(
+    (state) => ({
+      electricity: state.statistics.electricity,
+      water: state.statistics.water,
+      waste: state.statistics.waste,
+      sorting: state.statistics.sorting,
+    }),
+    shallowEqual,
+  );
 
   const dispatch = useDispatch();
 
@@ -75,26 +80,26 @@ const Statistics = () => {
   return (
     <Layout>
       <Title classNames={styles.title}>Statistics</Title>
-      <div className={styles.grid}>
-        <div className={`${styles.gridItem} ${styles.gridItem__elec}`}>
+      <div className={styles.statistics}>
+        <div className={styles.statistics__item}>
           <Subtitle classNames={styles.subtitle}>Electricity</Subtitle>
           <div className={styles.blockWrapper}>
             <Line data={electricity} options={options.optionsLine} id="electricity" />
           </div>
         </div>
-        <div className={`${styles.gridItem} ${styles.gridItem__water}`}>
+        <div className={styles.statistics__item}>
           <Subtitle classNames={styles.subtitle}>Water</Subtitle>
           <div className={styles.blockWrapper}>
             <Line data={water} options={options.optionsLine} id="water" />
           </div>
         </div>
-        <div className={`${styles.gridItem} ${styles.gridItem__waste}`}>
+        <div className={styles.statistics__item}>
           <Subtitle classNames={styles.subtitle}>Water Management</Subtitle>
           <div className={styles.blockWrapper}>
             <Line data={waste} options={options.optionsLine} id="waste" />
           </div>
         </div>
-        <div className={`${styles.gridItem} ${styles.gridItem__sorting}`}>
+        <div className={styles.statistics__item}>
           <Subtitle classNames={styles.subtitle}>Sorting</Subtitle>
           <div className={styles.blockWrapper}>
             <div className={styles.sortingDate}>
@@ -108,7 +113,7 @@ const Statistics = () => {
             />
           </div>
         </div>
-        <div className={`${styles.gridItem} ${styles.gridItem__devices}`}>
+        <div className={styles.statistics__item}>
           <Subtitle classNames={styles.subtitle}>Devices</Subtitle>
           {/* Сделать списком и проитерировать */}
           <div className={styles.devices}>

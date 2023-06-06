@@ -1,3 +1,5 @@
+@import '../../../styles/variables.scss';
+
 .title {
   margin-bottom: 30px;
 }
@@ -6,39 +8,14 @@
   margin-bottom: 18px;
 }
 
-.grid {
+.statistics {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 30px;
 
-  @media (min-width: 1024px) {
-    display: grid;
-    grid-template-areas:
-      'elec elec water water'
-      'waste waste sorting devices';
-    grid-template-columns: repeat(2, 1fr) 0.8fr 1.2fr;
-    grid-template-rows: repeat(2, 1fr);
+  &__item {
+    // flex: 1 1 492px;
   }
-}
-
-.gridItem__elec {
-  grid-area: elec;
-}
-
-.gridItem__water {
-  grid-area: water;
-}
-
-.gridItem__waste {
-  grid-area: waste;
-}
-
-.gridItem__sorting {
-  grid-area: sorting;
-}
-
-.gridItem__devices {
-  grid-area: devices;
 }
 
 .devices {
@@ -63,13 +40,14 @@
 }
 
 .devices__icon {
-  height: 71px;
-  width: 71px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 18px;
+  height: 71px;
+  width: 71px;
   margin-bottom: 4px;
+
+  border-radius: $radius-m;
 }
 
 .controls__subtitle {
@@ -84,8 +62,11 @@
 }
 
 .blockWrapper {
-  background: #fff5f5;
-  box-shadow: 0px 4px 35px rgba(0, 0, 0, 0.14);
-  border-radius: 30px;
+  max-width: 492px;
   padding: 12px 12px 18px 12px;
+
+  background: #fff5f5;
+
+  box-shadow: 0px 4px 35px rgba(0, 0, 0, 0.14);
+  border-radius: $radius-lg;
 }

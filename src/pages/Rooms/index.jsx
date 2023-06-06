@@ -1,15 +1,13 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Outlet, Route, Routes } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { Outlet } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { BedroomIcon, KitchenIcon, LivingRoomIcon, BathroomIcon } from '../../components/SvgIcons';
-import Box from '../../components/common/Box';
 import Dropup from '../../components/Dropup';
-import { fetchRooms } from '../../features/roomsSlice';
-import { changeCurrentRoom } from '../../features/roomsSlice';
+import { fetchRooms, changeCurrentRoom } from '../../store/reducers/roomsSlice';
+import Layout from '../../components/Layout';
 
 import styles from './Rooms.module.scss';
-import Layout from '../../components/Layout/Layout';
 
 const roomNavLinks = [
   { url: 'bedroom', name: 'Bedroom', icon: <BedroomIcon /> },

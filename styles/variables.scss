@@ -1,0 +1,44 @@
+// Отступы
+$step: 0.25rem;
+
+// Цвета
+$red: #ee777f;
+// --blue: #65bdc0;
+$blue: #6c9bcf;
+$dark-blue: #1d2343;
+$light-gray: #c2c2c2;
+
+// Border radius
+$radius-xs: $step;
+$radius-sm: $step * 4;
+$radius-m: $step * 4;
+$radius-lg: $step * 7;
+$radius-xl: $step * 10;
+$radius-full: 50%;
+
+// Индексы
+$index-1: 1; // Для наползающих элементов в общем потоке
+$index-2: 2; // Для наползающих элементов в общем потоке
+$index-3: 3; // Для масок
+$index-4: 4; // Для сайдбаров
+$index-5: 5; // Для модальных окон
+$index-6: 6; // Для элементов,перекрывающих все другие элементы
+
+// Медиа запросы
+$media-retina: '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)';
+
+$mobile: 'screen and (max-width: 47.9625em)';
+$mobile-min: 'screen and (min-width: 22.5em)';
+$mobile-interval: '(min-width: 22.5em) and (max-width: 47.9625em';
+
+$tablet: 'screen and (max-width: 63.9625em)';
+$tablet-min: 'screen and (min-width: 48em)';
+$tablet-interval: '(min-width: 48em) and (max-width: 63.9625em';
+
+$desktop: 'screen and (max-width: 79.9625em)';
+$desktop-min: 'screen and (min-width: 64em)';
+$desktop-interval: '(min-width: 64em) and (max-width: 79.9625em';
+$desktop-lg-min: 'screen and (min-width: 80em)';
+
+$mouse-device: '(hover: hover) and (pointer: fine)';
+$touch-device: '(hover: none) and (pointer: coarse)';

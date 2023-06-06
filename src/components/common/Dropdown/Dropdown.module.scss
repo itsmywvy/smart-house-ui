@@ -1,0 +1,29 @@
+.dropdown {
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 20px);
+  right: 0;
+  z-index: 20;
+
+  background-color: #fff;
+
+  padding: 10px;
+  width: max-content;
+}
+
+.menu > li {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.menu > li > * {
+  width: 100%;
+  height: 100%;
+
+  padding: 5px;
+  cursor: pointer;
+}

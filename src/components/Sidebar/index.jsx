@@ -1,10 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { MenuContext } from '../../contexts/menuContext';
-
-import styles from './Sidebar.module.scss';
-import logo from '../../assets/images/logo.png';
-
 import {
   BillingIcon,
   HomeIcon,
@@ -14,6 +9,8 @@ import {
 } from '../../components/SvgIcons';
 import Logo from '../Logo';
 import { useSelector } from 'react-redux';
+
+import styles from './Sidebar.module.scss';
 
 const Sidebar = ({ width }) => {
   const currentRoom = useSelector((state) => state.rooms.currentRoom);
@@ -28,7 +25,11 @@ const Sidebar = ({ width }) => {
 
   return (
     <aside className={styles.sidebar}>
-      {width > 1024 && <Logo />}
+      {width > 1024 && (
+        <NavLink to="/">
+          <Logo />
+        </NavLink>
+      )}
       <nav className={styles.nav}>
         <ul className={styles.navList}>
           {navLinks.map((link, i) => (

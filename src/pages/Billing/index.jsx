@@ -1,22 +1,18 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-import styles from './Billing.module.scss';
 import CurrentInvoice from '../../components/CurrentInvoice';
 import Preloader from '../../components/common/Preloader';
 import { shallowEqual, useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import {
-  fetchChartData,
-  fetchHistoryData,
-  getCurrentInvoice,
-  useGetHistoryDataQuery,
-} from '../../features/billingSlice';
+import { fetchChartData, useGetHistoryDataQuery } from '../../store/reducers/billingSlice';
 import Title from '../../components/common/Title';
 import Subtitle from '../../components/common/Subtitle';
 import Table from '../../components/Table';
 import Box from '../../components/common/Box';
 import LegendLine from '../../components/LegendLine';
-import Layout from '../../components/Layout/Layout';
+import Layout from '../../components/Layout';
+import { useAppDispatch } from '../../hooks/redux';
+
+import styles from './Billing.module.scss';
 
 const Billing = () => {
   const options = {
@@ -41,7 +37,7 @@ const Billing = () => {
       },
     },
   };
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { invoicingChart, isFetching, payStatus, currentInvoice, history } = useSelector(
     (state) => ({
       invoicingChart: state.billing.invoicingChart,

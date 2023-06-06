@@ -1,0 +1,39 @@
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  width: 100%;
+
+  position: relative;
+}
+.input {
+  padding: 12px;
+
+  background-color: transparent;
+  border-radius: 8px;
+  border: 1px solid #888787;
+  outline: none;
+  color: #fff;
+}
+
+.label {
+  color: #8b929a;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.passwordIcon {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+
+  width: 20px;
+  height: 20px;
+}
+
+.half {
+  @media (min-width: 540px) {
+    width: calc(50% - 10px);
+  }
+}

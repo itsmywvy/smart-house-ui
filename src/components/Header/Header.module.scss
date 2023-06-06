@@ -1,10 +1,9 @@
+@import '../../../styles/variables.scss';
+
 .header {
-  grid-area: 1 / 2 / 2 / 3;
-  z-index: 2;
-  top: 2rem;
-  right: 2rem;
   padding: 2rem 0 41px;
   height: 105px;
+
   background-color: #fff;
   border-radius: 60px 0 0 0;
 
@@ -17,6 +16,7 @@
   @media (max-width: 1024px) {
     height: auto;
     padding: 1rem 0 1.5rem;
+
     border-radius: 0;
 
     &__inner {
@@ -31,16 +31,17 @@
 }
 
 .search {
-  border: 1px solid #c2c2c2;
-  border-radius: 30px;
   padding: 10px 20px 10px 20px;
+
+  border: 1px solid $light-gray;
+  border-radius: $radius-lg;
 }
 
 .search::placeholder {
   font-size: 15px;
   line-height: 18px;
   letter-spacing: 0.09em;
-  color: #c2c2c2;
+  color: $light-gray;
 }
 
 .search:focus {

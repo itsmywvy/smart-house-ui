@@ -1,25 +1,22 @@
 import React from 'react';
-import { shallowEqual, useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import {
   deleteCurrentInvoice,
   getTotalBill,
-  updatePayStatus,
   usePayInvoiceMutation,
-} from '../../features/billingSlice';
+} from '../../store/reducers/billingSlice';
 import Preloader from '../common/Preloader';
-import styles from './CurrentInvoice.module.scss';
-
 import Subtitle from '../common/Subtitle';
 import Button from '../common/Button';
 
+import styles from './CurrentInvoice.module.scss';
+
 const CurrentInvoice = React.memo(({ invoicingData, isLoading }) => {
   const dispatch = useDispatch();
-  const { tax, total, payStatus } = useSelector(
+  const { tax, total } = useSelector(
     (state) => ({
       tax: state.billing.tax,
       total: state.billing.total,
-      payStatus: state.billing.payStatus,
     }),
     shallowEqual,
   );
@@ -42,7 +39,6 @@ const CurrentInvoice = React.memo(({ invoicingData, isLoading }) => {
   React.useEffect(() => {
     setTimeout(function () {
       mutateFlags.reset();
-      console.log('reset');
     }, 2000);
   }, [mutateFlags.isSuccess]);
 
@@ -52,7 +48,7 @@ const CurrentInvoice = React.memo(({ invoicingData, isLoading }) => {
         <Preloader />
       ) : (
         <div>
-          <div className={styles.currentInvoice__head}>
+          <div className={styles.currentInvoice__top}>
             <div className={styles.currentInvoice__item}>
               <span className={styles.currentInvoice_itemName}>Number</span>
               <span className={styles.currentInvoice__itemData}>{currentItem?.number}</span>

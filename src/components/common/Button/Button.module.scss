@@ -1,10 +1,32 @@
-.btnPay {
+.btn {
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+
+  color: #fff5f5;
+  font-weight: 500;
+}
+
+.auth {
+  width: 100%;
+  padding: 12px;
+
+  border-radius: 8px;
+  border: transparent;
+
+  background-color: #167ef9;
+}
+
+.pay {
   margin: 25px auto 0;
   padding: 8px 35px;
+
   font-size: 18px;
   line-height: 22px;
   letter-spacing: 0.09em;
   color: #fff5f5;
+
   background: var(--red);
   border-radius: 21px;
 

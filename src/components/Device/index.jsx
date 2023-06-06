@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styles from './Device.module.scss';
 
 const Device = ({ deviceIcon, deviceName }) => {

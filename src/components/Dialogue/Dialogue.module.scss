@@ -1,0 +1,7 @@
+.dialogue {
+  display: none;
+
+  &--active {
+    display: flex;
+  }
+}

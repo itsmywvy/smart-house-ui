@@ -1,16 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { NotifyIcon } from '../SvgIcons';
+
 import styles from './Notification.module.scss';
 
 const Notification = () => {
-  const [popUpActive, setPopUpActive] = useState(false);
+  const [popUpActive, setPopUpActive] = React.useState(false);
 
   const onClickedNotify = () => {
     setPopUpActive((state) => (state = !popUpActive));
   };
 
-  const currentBtnRef = useRef(null);
-  const currentWindowRef = useRef(null);
+  const currentBtnRef = React.useRef(null);
+  const currentWindowRef = React.useRef(null);
 
   const onClickOutsideButton = (e) => {
     if (
@@ -21,7 +22,7 @@ const Notification = () => {
     }
   };
 
-  useEffect(() => document.body.addEventListener('click', onClickOutsideButton), []);
+  React.useEffect(() => document.body.addEventListener('click', onClickOutsideButton), []);
 
   return (
     <div className={styles['notification-wrapper']}>

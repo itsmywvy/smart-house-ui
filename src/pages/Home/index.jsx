@@ -1,18 +1,19 @@
 import React from 'react';
-import styles from './Home.module.scss';
-import { ThermometherIcon, UserIcon, CloudsIcon } from '../../components/SvgIcons';
+import { ThermometherIcon, UserIcon } from '../../components/SvgIcons';
 import Thermomether from '../../components/Thermomether';
 import Diagram from '../../components/Diagram';
 import Clock from '../../components/Clock';
 import Box from '../../components/common/Box';
-import { useGetMembersQuery } from '../../store/reducers/membersSlice';
 import Shortcuts from '../../components/Shortcuts';
-import { useAppSelector } from '../../hooks/redux';
-import Layout from '../../components/Layout/Layout';
-import { useGetOneUserQuery } from '../../store/reducers/homeSlice';
-import { getJwtToken } from '../../utils/login';
-import { decodeBase64 } from '../../utils/decodeBase64';
-import { useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../../hooks/redux';
+import Layout from '../../components/Layout';
+import { shallowEqual } from 'react-redux';
+import { useGetUserDetailsQuery } from '../../store/reducers/authSlice';
+import Scroller from '../../components/Scroller';
+import WeatherStatus from '../../components/WeatherStatus';
+import Avatar from '../../components/common/Avatar';
+
+import styles from './Home.module.scss';
 
 interface IMember {
   homeStatus: boolean;
@@ -21,19 +22,42 @@ interface IMember {
 }
 
 const Home = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const controls = useAppSelector((state) => state.home.controls);
 
-  const { data: members } = useGetMembersQuery();
-  const { data: user } = useGetOneUserQuery(decodeBase64(getJwtToken()).id);
+  // const user = useAppSelector((state) => state.auth.userInfo);
+
+  const {
+    data: user,
+    isFetching,
+    isSuccess,
+  } = useGetUserDetailsQuery('userDetailsHome', {
+    // perform a refetch every 15mins
+    // pollingInterval: 900000,
+    // refetchOnMountOrArgChange: true,
+  });
+
+  const { loading, error, userInfo, userToken } = useAppSelector(
+    (state) => state.auth,
+    shallowEqual,
+  );
+
+  // React.useEffect(() => {
+  //   if (isSuccess) {
+  //     dispatch(getMembers(user?.members_ids));
+  //   }
+  //   console.log('home data', user);
+  // }, [user]);
+
+  // const { data: members } = useGetUsersQuery();
 
   const membersFiltered =
-    members
+    user?.members
       ?.filter((obj: IMember) => obj.homeStatus === true)
       .map((obj: IMember, i) => {
         return (
           <li key={`${obj}${i}`} className={styles.membersUser}>
-            {obj.avatar ? <img src={obj.avatar} alt="" /> : <UserIcon classNames="" />}
+            <Avatar image={obj.avatar} />
             <span>{obj.firstName}</span>
           </li>
         );
@@ -53,16 +77,22 @@ const Home = () => {
           <Box>
             <div className={styles.info__item}>
               <h3 className={styles.subtitle}>Outdoor Temperature</h3>
-              <div className={styles.temp}>
-                <span>+{controls.temperature}°C</span>
-                <CloudsIcon />
-              </div>
+
+              <WeatherStatus />
             </div>
           </Box>
           <Box>
             <div className={styles.info__item}>
               <h3 className={styles.subtitle}>Members at home:</h3>
-              <ul className={styles.members}>{membersFiltered}</ul>
+
+              <Scroller>
+                {membersFiltered?.map((item, i) => (
+                  <li key={`${item}${i}`} className={styles.scroller__item}>
+                    {item.avatar ? <img src={item.avatar} alt="" /> : <UserIcon classNames="" />}
+                    <span>{item.firstName}</span>
+                  </li>
+                ))}
+              </Scroller>
             </div>
           </Box>
         </div>

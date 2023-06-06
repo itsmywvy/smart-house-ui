@@ -5,7 +5,9 @@ import axios from 'axios';
 // })
 
 const instance = axios.create({
-  baseURL: 'https://60d6d2aa307c300017a5f50c.mockapi.io',
+  // baseURL: 'https://60d6d2aa307c300017a5f50c.mockapi.io',
+  // baseURL: 'https://backend-smart-house-production.up.railway.app/api',
+  baseURL: 'http://localhost:3001/api',
 });
 
 export const roomsAPI = {

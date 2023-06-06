@@ -4,19 +4,23 @@ import { MessageIcon, MembersIcon } from '../../../components/SvgIcons';
 import styles from './MemberCard.module.scss';
 import { IMember } from '../../../store/reducers/membersSlice';
 
-const MemberCard: React.FC<IMember> = ({
-  avatar,
-  firstName,
-  lastName,
-  membership,
-  _id: id,
-  homeLocation,
-}) => {
+const MemberCard = ({ member, onClickChat, setCurrentMember }) => {
+  const { firstName, lastName, membership, homeLocation, id, avatar } = member;
+
   return (
     <div className={styles.card}>
       <div className={styles.cardTop}>
         <div className={styles.avatarWrapper}>
-          {avatar ? <img className={styles.avatar} src={avatar} alt="" /> : <MembersIcon />}
+          {avatar ? (
+            <img
+              crossOrigin="anonymous"
+              className={styles.avatar}
+              src={`http://localhost:3001/${avatar}`}
+              alt=""
+            />
+          ) : (
+            <MembersIcon />
+          )}
         </div>
         <div className={styles.name}>
           {firstName} {lastName}
@@ -27,7 +31,7 @@ const MemberCard: React.FC<IMember> = ({
         <div className={styles.status}>Status: {homeLocation ? 'At home' : 'Out'}</div>
         <div className={styles.room}>{homeLocation}</div>
       </div>
-      <button className={`${styles.sendMessageBtn} btn`}>
+      <button onClick={onClickChat} className={`${styles.sendMessageBtn} btn`}>
         <MessageIcon />
       </button>
     </div>

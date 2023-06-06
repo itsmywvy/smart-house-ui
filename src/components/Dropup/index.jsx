@@ -1,40 +1,44 @@
 import React from 'react';
 import Box from '../common/Box';
-import styles from './Dropup.module.scss';
 import { ReactComponent as MenuIcon } from '../../assets/images/menu.svg';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
+import { changeCurrentRoom } from '../../store/reducers/roomsSlice';
+import { useOutsideAlerter } from '../../hooks/useOutsideAlerter';
 
-import { changeCurrentRoom } from '../../features/roomsSlice';
+import styles from './Dropup.module.scss';
 
 const Dropup = ({ data }) => {
   const dispatch = useDispatch();
-  const [showRoomList, setShowRoomList] = React.useState(false);
+  const [visible, setVisible] = React.useState(false);
   const { roomName } = useParams();
 
   const onClickRoomItem = (item) => {
-    setShowRoomList(false);
+    setVisible(false);
   };
 
   const onClickLink = (item) => {
     dispatch(changeCurrentRoom(item));
   };
 
+  const dropupRef = React.useRef();
+
+  // useOutsideAlerter(dropupRef, () => setVisible(false));
+
   return (
     <div className={styles.dropup}>
       <Box>
-        <div onClick={() => setShowRoomList((prev) => !prev)} className={styles.dropup__item}>
+        <div onClick={() => setVisible((prev) => !prev)} className={styles.dropup__item}>
           {data.find((item) => item.url === roomName)?.icon || <MenuIcon />}
         </div>
       </Box>
 
-      {showRoomList && (
+      {visible && (
         <div className={styles['dropup-wrapper']}>
           {data.map((link, i) => (
-            <NavLink to={link.url} key={i} onClick={() => onClickLink(link.url)}>
+            <NavLink ref={dropupRef} to={link.url} key={i} onClick={() => onClickLink(link.url)}>
               <Box>
-                <div className={styles['dropup__item']} onClick={() => onClickRoomItem(link.url)}>
+                <div className={styles.dropup__item} onClick={() => onClickRoomItem(link.url)}>
                   {link.icon}
                 </div>
               </Box>

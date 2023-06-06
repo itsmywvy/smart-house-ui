@@ -1,6 +1,7 @@
+@import '../../../styles/variables.scss';
+
 .rooms {
   display: flex;
-  gap: 75px;
 }
 
 .roomsContent {
@@ -16,6 +17,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
   border-radius: 20px;
 }
 
@@ -55,18 +57,19 @@
   justify-content: space-around;
   flex-basis: 5%;
   gap: 30px;
-  stroke: #c1c1c1;
+  padding: 1rem;
+
   position: absolute;
   right: 0;
   bottom: 68px;
-  z-index: 1;
-  background-color: #fff;
-  padding: 1rem;
+  z-index: $index-1;
+
+  stroke: #c1c1c1;
 
   &__item {
     background: #ffffff;
     box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.18);
-    border-radius: 30px;
+    border-radius: $radius-lg;
     width: 90px;
     height: 30px;
     display: flex;
@@ -98,7 +101,7 @@
 }
 
 .active {
-  color: var(--red);
-  stroke: var(--red);
-  fill: var(--red);
+  color: $red;
+  stroke: $red;
+  fill: $red;
 }

@@ -1,13 +1,13 @@
 import React from 'react';
-import styles from './Shortcuts.module.scss';
-
 import { IntercomIcon, MusicIcon, WifiIcon } from '../SvgIcons';
+
+import styles from './Shortcuts.module.scss';
 
 const Shortcuts = () => {
   return (
     <div className={styles.shortcuts}>
       <h3>Shortcuts</h3>
-      <div className={styles.shortcutsWrapper}>
+      <div className={styles['shortcuts-wrapper']}>
         <div className={`${styles.shortcut} block--red`}>
           <WifiIcon />
           <span>WI-FI</span>

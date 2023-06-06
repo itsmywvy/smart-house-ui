@@ -1,3 +1,5 @@
+@import '../../../styles/variables.scss';
+
 .diagramWrapper {
   width: 187px;
   height: 187px;
@@ -5,34 +7,38 @@
 }
 
 .diagram {
-  border-radius: 50%;
+  border-radius: $radius-full;
   background: #fff;
   box-shadow: 0px 4px 35px rgba(0, 0, 0, 0.17);
 }
 
 .diagramCount {
-  font-size: 18px;
-  line-height: 22px;
-  letter-spacing: 0.09em;
-  color: rgba(29, 35, 67, 0.63);
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.09em;
+  color: $dark-blue;
 }
 
 .chartText {
   font-size: 10px;
   line-height: 48px;
   letter-spacing: 0.09em;
-  color: #1d2343;
+  color: $dark-blue;
+
   fill: #000;
+
   transform: translateY(0.25em);
 }
 
 .chartNumber {
   line-height: 1;
   text-anchor: middle;
+
   transform: translateY(-0.05em);
   transform: translateX(0.2em);
 }

@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import homeReducer, { usersDataApi } from './reducers/homeSlice';
 import membersReducer, { membersDataApi } from './reducers/membersSlice';
-import roomsReducer from '../features/roomsSlice';
-import billingReducer, { historyDataApi } from '../features/billingSlice';
-import statisticsReducer from '../features/statisticsSlice';
+import roomsReducer from './reducers/roomsSlice';
+import billingReducer, { historyDataApi } from './reducers/billingSlice';
+import statisticsReducer from './reducers/statisticsSlice';
+import authReducer, { authApi } from './reducers/authSlice';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
+import darkModeReducer from './reducers/darkModeSlice';
 
 export const rootReducer = combineReducers({
   home: homeReducer,
@@ -12,10 +14,13 @@ export const rootReducer = combineReducers({
   rooms: roomsReducer,
   billing: billingReducer,
   statistics: statisticsReducer,
+  auth: authReducer,
+  darkMode: darkModeReducer,
   // [chartDataApi.reducerPath]: chartDataApi.reducer,
   [historyDataApi.reducerPath]: historyDataApi.reducer,
   [membersDataApi.reducerPath]: membersDataApi.reducer,
   [usersDataApi.reducerPath]: usersDataApi.reducer,
+  [authApi.reducerPath]: authApi.reducer,
 });
 
 export const setupStore = () => {
@@ -27,6 +32,7 @@ export const setupStore = () => {
         historyDataApi.middleware,
         membersDataApi.middleware,
         usersDataApi.middleware,
+        authApi.middleware,
       ]),
   });
 };

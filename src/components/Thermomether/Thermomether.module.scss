@@ -1,27 +1,35 @@
+@import '../../../styles/variables.scss';
+
 .termometherWrapper {
   display: flex;
   justify-content: center;
-  box-shadow: 0px -6px 60px rgba(29, 35, 67, 0.14);
-  border-radius: 25px;
-  position: relative;
-  overflow: hidden;
   width: 76px;
   height: 176px;
   margin: 0 auto;
+
+  position: relative;
+
+  box-shadow: 0px -6px 60px rgba(29, 35, 67, 0.14);
+  border-radius: 25px;
+
+  overflow: hidden;
 }
 
 .termomether {
-  font-size: 20px;
-  line-height: 24px;
-  letter-spacing: 0.03em;
-  color: #fff;
-  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  z-index: 1;
+
+  font-size: 20px;
+  line-height: 24px;
+  color: #fff;
+  letter-spacing: 0.03em;
+
+  background: #fff;
+
+  z-index: $index-1;
 }
 
 .scale {

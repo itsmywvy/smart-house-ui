@@ -1,0 +1,21 @@
+@import '../../../../styles/variables.scss';
+
+@import '../../../../styles/variables.scss';
+
+.avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: $radius-full;
+  overflow: hidden;
+
+  & > * {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &--lg {
+    width: 87px;
+    height: 87px;
+  }
+}

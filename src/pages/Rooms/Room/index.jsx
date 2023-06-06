@@ -17,7 +17,7 @@ import {
 import Thermomether from '../../../components/Thermomether';
 import propTypes from 'prop-types';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { convertToFahrenheit, fetchRooms } from '../../../features/roomsSlice';
+import { convertToFahrenheit, fetchRooms } from '../../../store/reducers/roomsSlice';
 import { useParams } from 'react-router-dom';
 import Title from '../../../components/common/Title';
 import Subtitle from '../../../components/common/Subtitle';
@@ -69,7 +69,7 @@ const Room = () => {
           </div>
           <Thermomether
             icon={<DropIcon />}
-            bgColor="#CAEEEF"
+            bgColor="#A5C0DD"
             value={room.humidity}
             scaleColor="var(--blue)"
           />
