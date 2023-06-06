@@ -1,9 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import homeReducer from './reducers/homeSlice';
-import membersReducer from './reducers/membersSlice';
+import homeReducer, { usersDataApi } from './reducers/homeSlice';
+import membersReducer, { membersDataApi } from './reducers/membersSlice';
 import roomsReducer from '../features/roomsSlice';
-import billingReducer from '../features/billingSlice';
+import billingReducer, { historyDataApi } from '../features/billingSlice';
 import statisticsReducer from '../features/statisticsSlice';
+import { setupListeners } from '@reduxjs/toolkit/dist/query';
 
 export const rootReducer = combineReducers({
   home: homeReducer,
@@ -11,6 +12,10 @@ export const rootReducer = combineReducers({
   rooms: roomsReducer,
   billing: billingReducer,
   statistics: statisticsReducer,
+  // [chartDataApi.reducerPath]: chartDataApi.reducer,
+  [historyDataApi.reducerPath]: historyDataApi.reducer,
+  [membersDataApi.reducerPath]: membersDataApi.reducer,
+  [usersDataApi.reducerPath]: usersDataApi.reducer,
 });
 
 export const setupStore = () => {
@@ -18,9 +23,11 @@ export const setupStore = () => {
     reducer: rootReducer,
     // middleware: [thunk],
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware({
-        serializableCheck: false,
-      }),
+      getDefaultMiddleware().concat([
+        historyDataApi.middleware,
+        membersDataApi.middleware,
+        usersDataApi.middleware,
+      ]),
   });
 };
 
@@ -37,3 +44,5 @@ export type AppStore = ReturnType<typeof setupStore>;
 export type AppDispatch = AppStore['dispatch'];
 
 // export default store;
+
+setupListeners(setupStore().dispatch);

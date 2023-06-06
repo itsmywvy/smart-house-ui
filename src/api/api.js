@@ -3,6 +3,7 @@ import axios from 'axios';
 // const instance = axios.create({
 //   baseURL: 'https://60e301959103bd0017b476e8.mockapi.io'
 // })
+
 const instance = axios.create({
   baseURL: 'https://60d6d2aa307c300017a5f50c.mockapi.io',
 });
@@ -17,7 +18,7 @@ export const membersAPI = {
 };
 
 export const billingAPI = {
-  getHistoryData: () => instance.get('/billingHistory').then((res) => res.data),
+  getHistoryData: () => instance.get('/billingHistory').then((res) => res),
   getChartData: () => instance.get('/billingChart').then((res) => res.data),
   payInvoice: (id) => instance.put(`/billingHistory/${id}`, { status: true }),
 };
@@ -32,3 +33,20 @@ export const statisticsAPI = {
         return res.data.trim().split('\n');
       }),
 };
+
+// export const axiosBaseQuery =
+//   ({ baseUrl } = { baseUrl: '' }) =>
+//   async ({ url, method, data, params }) => {
+//     try {
+//       const result = await axios({ url: baseUrl + url, method, data, params });
+//       return { data: result.data };
+//     } catch (axiosError) {
+//       let err = axiosError;
+//       return {
+//         error: {
+//           status: err.response?.status,
+//           data: err.response?.data || err.message,
+//         },
+//       };
+//     }
+//   };

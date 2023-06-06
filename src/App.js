@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React, { useCallback } from 'react';
+import { Navigate, Route, Router, Routes, redirect, useNavigate } from 'react-router-dom';
 import './App.scss';
 import Billing from './pages/Billing';
 import Header from './components/Header';
@@ -11,44 +11,43 @@ import Statistics from './pages/Statistics';
 import Room from './pages/Rooms/Room';
 import MobileMenu from './components/MobileMenu';
 import MenuProvider from './contexts/menuContext';
+import ScrollToTop from './components/ScrollToTop';
+import useWindowSize from './hooks/useWindowSize';
+import Login from './pages/Login/Login';
+import { getJwtToken } from './utils/login';
+import Signup from './pages/Signup/Signup';
+import Security from './pages/Security';
 
 function App() {
-  const [width, setWidth] = React.useState(0);
+  const navigate = useNavigate();
+  const [width] = useWindowSize();
 
   React.useEffect(() => {
-    onResizeWindow();
-
-    window.addEventListener('resize', onResizeWindow);
-
-    return () => {
-      window.removeEventListener('resize', onResizeWindow);
-    };
+    const jwtToken = getJwtToken();
+    if (!jwtToken) {
+      navigate('/login');
+    } else {
+      navigate('/');
+    }
   }, []);
 
-  const onResizeWindow = () => {
-    const currentWidth = window.innerWidth;
-    setWidth(currentWidth);
-  };
-
   return (
-    <div className="main-container">
-      <Sidebar width={width} />
-      <Header width={width} />
-      <main className="main">
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/rooms" element={<Rooms />}>
-              {/* <Route index element={<Room />} /> */}
-              <Route path=":roomName" element={<Room />} />
-            </Route>
-            <Route path="/statistics" element={<Statistics />} />
-            <Route path="/billing" element={<Billing />} />
-            <Route path="/members" element={<Member />} />
-          </Routes>
-        </div>
-      </main>
-    </div>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/rooms" element={<Rooms width={width} />}>
+          {/* <Route index element={<Room />} /> */}
+          <Route path=":roomName" element={<Room />} />
+        </Route>
+        <Route path="/security" element={<Security />} />
+        <Route path="/statistics" element={<Statistics />} />
+        <Route path="/billing" element={<Billing />} />
+        <Route path="/members" element={<Member />} />
+      </Routes>
+    </>
   );
 }
 

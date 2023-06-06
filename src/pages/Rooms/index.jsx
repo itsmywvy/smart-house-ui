@@ -3,9 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Outlet, Route, Routes } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { BedroomIcon, KitchenIcon, LivingRoomIcon, BathroomIcon } from '../../components/SvgIcons';
-import styles from './Rooms.module.scss';
-
+import Box from '../../components/common/Box';
+import Dropup from '../../components/Dropup';
 import { fetchRooms } from '../../features/roomsSlice';
+import { changeCurrentRoom } from '../../features/roomsSlice';
+
+import styles from './Rooms.module.scss';
+import Layout from '../../components/Layout/Layout';
 
 const roomNavLinks = [
   { url: 'bedroom', name: 'Bedroom', icon: <BedroomIcon /> },
@@ -14,34 +18,46 @@ const roomNavLinks = [
   { url: 'bathroom', name: 'Bathroom', icon: <BathroomIcon /> },
 ];
 
-const Rooms = () => {
+const Rooms = ({ width }) => {
   const dispatch = useDispatch();
+
   React.useEffect(() => {
     dispatch(fetchRooms());
   }, []);
 
-  return (
-    <div className={styles.room}>
-      <div className={styles.roomContent}>
-        <Outlet />
-      </div>
+  const onClickLink = (item) => {
+    dispatch(changeCurrentRoom(item));
+  };
 
-      <nav className={styles.navigation}>
-        {roomNavLinks.map((link, i) => (
-          <NavLink
-            key={i}
-            to={link.url}
-            className={({ isActive }) =>
-              isActive
-                ? [styles.navigation__item, styles.active].join(' ')
-                : styles.navigation__item
-            }>
-            {link.icon}
-            <span>{link.name}</span>
-          </NavLink>
-        ))}
-      </nav>
-    </div>
+  return (
+    <Layout>
+      <div className={styles.rooms}>
+        <div className={styles.roomsContent}>
+          <Outlet />
+        </div>
+
+        {width > 1024 ? (
+          <nav className={styles.navigation}>
+            {roomNavLinks.map((link, i) => (
+              <NavLink
+                onClick={() => onClickLink(link.url)}
+                key={i}
+                to={link.url}
+                className={({ isActive }) =>
+                  isActive
+                    ? [styles.navigation__item, styles.active].join(' ')
+                    : styles.navigation__item
+                }>
+                {link.icon}
+                <span>{link.name}</span>
+              </NavLink>
+            ))}
+          </nav>
+        ) : (
+          <Dropup data={roomNavLinks} />
+        )}
+      </div>
+    </Layout>
   );
 };
 

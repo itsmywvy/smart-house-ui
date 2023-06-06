@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
-import { billingAPI, membersAPI, roomsAPI } from '../api/api';
+import { billingAPI } from '../api/api';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const fetchChartData = createAsyncThunk('users/fetchChartData', async (thunkAPI) => {
   const response = await billingAPI.getChartData();
@@ -11,13 +12,49 @@ export const fetchHistoryData = createAsyncThunk('users/fetchHistoryData', async
   return response;
 });
 
-export const updatePayStatus = createAsyncThunk('users/updatePayStatus', async (id, thunkAPI) => {
-  const response = await billingAPI.payInvoice(id);
-  return response;
+// export const chartDataApi = createApi({
+//   reducerPath: 'api/chart',
+//   baseQuery: fetchBaseQuery({ baseUrl: 'https://60d6d2aa307c300017a5f50c.mockapi.io/api/1' }),
+//   endpoints: (build) => ({
+//     getChartData: build.query({ query: () => 'billingChart' }),
+//   }),
+// });
+
+export const historyDataApi = createApi({
+  reducerPath: 'api/history',
+  tagTypes: ['Invoices'],
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://60d6d2aa307c300017a5f50c.mockapi.io/api/1' }),
+  endpoints: (build) => ({
+    getHistoryData: build.query({
+      query: () => 'billingHistory',
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: 'Invoices', id })),
+              { type: 'Invoices', id: 'LIST' },
+            ]
+          : [{ type: 'Invoices', id: 'LIST' }],
+    }),
+    payInvoice: build.mutation({
+      query(id) {
+        const body = { status: true };
+        return {
+          url: `billingHistory/${id}`,
+          method: 'PUT',
+          body,
+        };
+      },
+      invalidatesTags: [{ type: 'Invoices', id: 'LIST' }],
+      transformResponse: (response, meta, arg) => response.data,
+      transformErrorResponse: (response, meta, arg) => response.status,
+    }),
+  }),
 });
 
+// export const { useGetChartDataQuery } = chartDataApi;
+export const { useGetHistoryDataQuery, usePayInvoiceMutation } = historyDataApi;
+
 const initialState = {
-  history: [],
   invoicingChart: {
     labels: ['Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
     datasets: [
@@ -53,7 +90,6 @@ const initialState = {
   payStatus: '',
   error: {
     chartData: null,
-    historyData: null,
     payInvoice: null,
   },
   currentInvoice: [],
@@ -64,14 +100,17 @@ export const billingSlice = createSlice({
   initialState,
   reducers: {
     getCurrentInvoice(state, { payload }) {
-      state.currentInvoice = payload.filter((obj) => obj.status);
+      console.log('s', payload);
+      state.currentInvoice.push([...payload.filter((obj) => obj.status)]);
     },
     getTotalBill(state, { payload }) {
       state.total = (payload * state.tax).toFixed(2);
     },
+    deleteCurrentInvoice(state, { payload }) {
+      state.currentInvoice.filter((item) => item.number !== payload);
+    },
   },
   extraReducers: (builder) => {
-    // Get Chart Data
     builder.addCase(fetchChartData.pending, (state) => {
       state.isFetching.chartData = true;
       state.error.chartData = null;
@@ -90,42 +129,21 @@ export const billingSlice = createSlice({
       state.isFetching.chartData = false;
     });
 
-    // Get History Data
-    builder.addCase(fetchHistoryData.pending, (state) => {
-      state.isFetching.historyData = true;
-      state.error.historyData = null;
-    });
-
-    builder.addCase(fetchHistoryData.fulfilled, (state, { payload }) => {
-      state.history.push(...payload);
-      state.isFetching.historyData = false;
-      state.currentInvoice = payload
-        .filter((obj) => !obj.status)
-        .sort((a, b) => a.number - b.number);
-    });
-
-    builder.addCase(fetchHistoryData.rejected, (state, { payload }) => {
-      if (payload) state.error.historyData = payload.message;
-      state.isFetching.historyData = false;
-    });
-
     // Pay invoice
-    builder.addCase(updatePayStatus.pending, (state) => {
-      state.payStatus = 'loading';
-    });
-
-    builder.addCase(updatePayStatus.fulfilled, (state, { payload }) => {
-      state.payStatus = 'success';
-      state.currentInvoice.filter((obj) => payload.data.number !== obj.number);
-    });
-
-    builder.addCase(updatePayStatus.rejected, (state, { payload }) => {
-      if (payload) state.error.payInvoice = payload.message;
-      state.payStatus = 'error';
-    });
+    // builder.addCase(updatePayStatus.pending, (state) => {
+    //   state.payStatus = 'loading';
+    // });
+    // builder.addCase(updatePayStatus.fulfilled, (state, { payload }) => {
+    //   state.payStatus = 'success';
+    //   state.currentInvoice.filter((obj) => payload.data.number !== obj.number);
+    // });
+    // builder.addCase(updatePayStatus.rejected, (state, { payload }) => {
+    //   if (payload) state.error.payInvoice = payload.message;
+    //   state.payStatus = 'error';
+    // });
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getCurrentInvoice, getTotalBill } = billingSlice.actions;
+export const { getCurrentInvoice, getTotalBill, deleteCurrentInvoice } = billingSlice.actions;
 export default billingSlice.reducer;

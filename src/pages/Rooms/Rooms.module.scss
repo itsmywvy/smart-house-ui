@@ -1,9 +1,9 @@
-.room {
+.rooms {
   display: flex;
   gap: 75px;
 }
 
-.roomContent {
+.roomsContent {
   flex-grow: 1;
 }
 
@@ -59,7 +59,7 @@
   position: absolute;
   right: 0;
   bottom: 68px;
-  z-index: 5;
+  z-index: 1;
   background-color: #fff;
   padding: 1rem;
 

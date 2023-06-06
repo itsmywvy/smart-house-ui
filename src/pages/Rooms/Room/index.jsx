@@ -16,49 +16,48 @@ import {
 } from '../../../components/SvgIcons';
 import Thermomether from '../../../components/Thermomether';
 import propTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-import { convertToFahrenheit } from '../../../features/roomsSlice';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { convertToFahrenheit, fetchRooms } from '../../../features/roomsSlice';
 import { useParams } from 'react-router-dom';
 import Title from '../../../components/common/Title';
 import Subtitle from '../../../components/common/Subtitle';
+import Preloader from '../../../components/common/Preloader';
 
 const Room = () => {
-  const dispatch = useDispatch();
-  const [currentRoom, setCurrentRoom] = React.useState({});
-  const params = useParams();
+  const { roomName } = useParams();
 
+  const dispatch = useDispatch();
   const temperatureF = useSelector((state) => state.rooms.temperatureF);
   const rooms = useSelector((state) => state.rooms.data);
 
-  React.useEffect(() => {
-    rooms.find((room) => {
-      console.log(room);
-      if (room.name === params.roomName) {
-        setCurrentRoom(room);
-      }
-    });
+  const room = rooms.find((item) => item.name === roomName);
 
-    dispatch(convertToFahrenheit(currentRoom.temperature));
-  }, [, params.roomName]);
+  React.useEffect(() => {
+    dispatch(convertToFahrenheit(room?.temperature));
+  }, [room]);
+
+  if (!room) {
+    return <Preloader />;
+  }
 
   return (
     <>
-      <Title classNames={styles.title}>{params.roomName}</Title>
+      <Title classNames={styles.title}>{roomName}</Title>
       <div className={styles.climate}>
         <div className={styles.climate__item}>
           <div className={styles.info}>
             <div className={styles.info__text}>Room’s Temperature</div>
             <span className={styles.info__numbers}>
-              +{currentRoom.temperature} <span>&#176;C</span>{' '}
+              +{room.temperature} <span>°C</span>
             </span>
             <span className={styles.info__numbers}>
-              {temperatureF} <span>&#176;F</span>
+              {temperatureF} <span>°F</span>
             </span>
           </div>
           <Thermomether
             icon={<ThermometherIcon />}
             bgColor="#FFE5E5"
-            value={currentRoom.temperature}
+            value={room.temperature}
             scaleColor="var(--red)"
           />
         </div>
@@ -66,12 +65,12 @@ const Room = () => {
         <div className={styles.climate__item}>
           <div className={styles.info}>
             <span className={styles.info__text}>Room’s Humidity</span>
-            <span className={styles.info__numbers}>{currentRoom.humidity}%</span>
+            <span className={styles.info__numbers}>{room.humidity}%</span>
           </div>
           <Thermomether
             icon={<DropIcon />}
             bgColor="#CAEEEF"
-            value={currentRoom.humidity}
+            value={room.humidity}
             scaleColor="var(--blue)"
           />
         </div>
@@ -79,12 +78,12 @@ const Room = () => {
         <div className={styles.climate__item}>
           <div className={styles.info}>
             <span className={styles.info__text}>Room’s Lightning</span>
-            <span className={styles.info__numbers}>{currentRoom.lightning}%</span>
+            <span className={styles.info__numbers}>{room.lightning}%</span>
           </div>
           <Thermomether
             icon={<LightIcon />}
             bgColor="#C5CAE3"
-            value={currentRoom.lightning}
+            value={room.lightning}
             scaleColor="var(--dark-blue)"
           />
         </div>

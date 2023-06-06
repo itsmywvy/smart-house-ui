@@ -3,12 +3,20 @@ import { Line } from 'react-chartjs-2';
 import styles from './Billing.module.scss';
 import CurrentInvoice from '../../components/CurrentInvoice';
 import Preloader from '../../components/common/Preloader';
-import { useSelector } from 'react-redux';
+import { shallowEqual, useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { fetchChartData, fetchHistoryData, getCurrentInvoice } from '../../features/billingSlice';
+import {
+  fetchChartData,
+  fetchHistoryData,
+  getCurrentInvoice,
+  useGetHistoryDataQuery,
+} from '../../features/billingSlice';
 import Title from '../../components/common/Title';
 import Subtitle from '../../components/common/Subtitle';
 import Table from '../../components/Table';
+import Box from '../../components/common/Box';
+import LegendLine from '../../components/LegendLine';
+import Layout from '../../components/Layout/Layout';
 
 const Billing = () => {
   const options = {
@@ -17,15 +25,7 @@ const Billing = () => {
       responsive: true,
       plugins: {
         legend: {
-          align: 'end',
-          labels: {
-            usePointStyle: true,
-            font: {
-              size: window.innerWidth > 530 ? 20 : 12,
-              family: 'Lack Regular',
-            },
-            padding: window.innerWidth > 530 ? 30 : 8,
-          },
+          display: false,
         },
       },
       elements: {
@@ -42,41 +42,58 @@ const Billing = () => {
     },
   };
   const dispatch = useDispatch();
-  const { history, invoicingChart, isFetching, payStatus, currentInvoice } = useSelector(
-    (state) => state.billing,
+  const { invoicingChart, isFetching, payStatus, currentInvoice, history } = useSelector(
+    (state) => ({
+      invoicingChart: state.billing.invoicingChart,
+      isFetching: state.billing.isFetching,
+      payStatus: state.billing.payStatus,
+      currentInvoice: state.billing.currentInvoice,
+    }),
+    shallowEqual,
   );
 
+  const {
+    data: historyData = [],
+    isLoading: isLoadingHistory,
+    error: errorHistory,
+  } = useGetHistoryDataQuery();
+
   React.useEffect(() => {
-    dispatch(fetchHistoryData());
     dispatch(fetchChartData());
-    dispatch(getCurrentInvoice(history));
   }, []);
 
   return (
-    <div className={styles.billing}>
-      <Title classNames={styles.title}>Utility Billing</Title>
-      <div className={styles.billingContent}>
-        <div className={styles.billingContentItem__history}>
-          <Subtitle classNames={styles.subtitle}>Invoice History</Subtitle>
-          <div className={styles.tableWrapper}>
-            {isFetching.chartData ? <Preloader /> : <Table data={history} />}
+    <Layout>
+      <div className={styles.billing}>
+        <Title classNames={styles.title}>Utility Billing</Title>
+        <div className={styles.billingContent}>
+          <div className={styles.billingContentItem__history}>
+            <Subtitle classNames={styles.subtitle}>Invoice History</Subtitle>
+            <div className={styles.tableWrapper}>
+              {isLoadingHistory ? <Preloader /> : <Table data={historyData} />}
+            </div>
+          </div>
+          <div className={styles.billingContentItem__current}>
+            <CurrentInvoice isLoading={isLoadingHistory} invoicingData={historyData} />
+          </div>
+          <div className={styles.billingContentItem__chart}>
+            <div className={styles['billingContentItem__chart-header']}>
+              <Subtitle classNames={styles.subtitle}>Invoicing Chart</Subtitle>
+              <LegendLine list={invoicingChart} />
+            </div>
+            {isFetching.chartData ? (
+              <Preloader />
+            ) : (
+              <Box>
+                <div style={{ position: 'relative', height: '30vh' }}>
+                  <Line id="currentInvoice" data={invoicingChart} options={options.optionsLine} />
+                </div>
+              </Box>
+            )}
           </div>
         </div>
-        <div className={styles.billingContentItem__current}>
-          <CurrentInvoice invoicingData={currentInvoice.length && currentInvoice[0]} />
-        </div>
-        <div className={styles.billingContentItem__chart}>
-          <Subtitle classNames={styles.subtitle}>Invoicing Chart</Subtitle>
-          {isFetching.chartData ? (
-            <Preloader />
-          ) : (
-            <div style={{ position: 'relative', height: '40vh' }}>
-              <Line id="currentInvoice" data={invoicingChart} options={options.optionsLine} />
-            </div>
-          )}
-        </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

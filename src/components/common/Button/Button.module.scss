@@ -1,0 +1,30 @@
+.btnPay {
+  margin: 25px auto 0;
+  padding: 8px 35px;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.09em;
+  color: #fff5f5;
+  background: var(--red);
+  border-radius: 21px;
+
+  display: flex;
+
+  &:disabled {
+    background: #7e807e;
+  }
+}
+
+.success {
+  background: #22bb33;
+  pointer-events: none;
+
+  span {
+    visibility: hidden;
+  }
+}
+
+.btnIcon {
+  width: 20px;
+  height: 20px;
+}

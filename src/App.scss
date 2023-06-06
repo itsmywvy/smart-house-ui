@@ -44,6 +44,11 @@ a {
 
   @media (min-width: 1024px) {
     max-width: 1024px;
+    padding: 0 65px;
+  }
+
+  @media (min-width: 1280px) {
+    max-width: 1170px;
   }
 
   @media (min-width: 1400px) {
@@ -71,7 +76,7 @@ a {
   grid-area: 2 / 2 / 3 / 3;
   background-color: #fff;
   border-radius: 0 0 0 60px;
-  padding-bottom: 60px;
+  padding-bottom: 160px;
 
   @media (max-width: 1024px) {
     border-radius: 0;
@@ -79,7 +84,7 @@ a {
 
   @media (min-width: 1024px) {
     height: calc(100vh - 105px);
-    padding-bottom: 0;
+    padding-bottom: 30px;
   }
 }
 

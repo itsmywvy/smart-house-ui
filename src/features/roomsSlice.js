@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
 import { roomsAPI } from '../api/api';
 
 export const fetchRooms = createAsyncThunk('rooms/fetch', async (thunkAPI) => {
@@ -11,14 +11,18 @@ const initialState = {
   error: '',
   data: [],
   temperatureF: 0,
+  currentRoom: 'bedroom',
 };
 
 export const roomsSlice = createSlice({
   name: 'rooms',
   initialState,
   reducers: {
-    convertToFahrenheit: (state, { payload }) => {
+    convertToFahrenheit(state, { payload }) {
       state.temperatureF = Math.ceil((payload * 9) / 5 + 32);
+    },
+    changeCurrentRoom(state, { payload }) {
+      state.currentRoom = payload;
     },
   },
   extraReducers: (builder) => {
@@ -40,5 +44,5 @@ export const roomsSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { convertToFahrenheit } = roomsSlice.actions;
+export const { convertToFahrenheit, changeCurrentRoom } = roomsSlice.actions;
 export default roomsSlice.reducer;

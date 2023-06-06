@@ -5,7 +5,6 @@
 
 .climate {
   display: flex;
-  margin-top: 30px;
   gap: 30px;
   flex-direction: column;
 
@@ -19,6 +18,18 @@
 
   @media (min-width: 768px) {
     flex-direction: row;
+    flex-wrap: wrap;
+
+    &__item {
+      flex-basis: 45%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    flex-wrap: nowrap;
+    &__item {
+      flex-basis: 33%;
+    }
   }
 }
 
@@ -27,27 +38,27 @@
   flex-direction: column;
   margin-right: 27px;
   min-width: 110px;
-}
 
-.info__text {
-  font-size: 15px;
-  line-height: 18px;
-  letter-spacing: 0.09em;
-  color: rgba(29, 35, 67, 0.63);
-  max-width: 80%;
-  margin-bottom: 16px;
-}
+  &__text {
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: 0.09em;
+    color: rgba(29, 35, 67, 0.63);
+    max-width: 80%;
+    margin-bottom: 16px;
+  }
 
-.info__numbers {
-  text-align: right;
-  font-size: 36px;
-  line-height: 43px;
-  letter-spacing: 0.09em;
-  color: rgba(29, 35, 67, 0.75);
-}
+  &__numbers {
+    text-align: right;
+    font-size: 36px;
+    line-height: 43px;
+    letter-spacing: 0.09em;
+    color: rgba(29, 35, 67, 0.75);
 
-.info__numbers span {
-  font-size: 22px;
+    span {
+      font-size: 22px;
+    }
+  }
 }
 
 .contentDevice {
@@ -60,13 +71,19 @@
   color: #fff;
   gap: 0.5rem;
 
-  // & > div {
-  //   width: 50%;
-  // }
+  & > div {
+    flex-basis: 45%;
+  }
 
   @media (min-width: 640px) {
     & > div {
-      flex-basis: 50%;
+      flex-basis: 32%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    & > div {
+      flex-basis: 24%;
     }
   }
 }

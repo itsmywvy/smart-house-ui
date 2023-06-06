@@ -1,17 +1,16 @@
 import React from 'react';
 import { MessageIcon, MembersIcon } from '../../../components/SvgIcons';
-import { IMember } from '../../../models/IMember';
 
 import styles from './MemberCard.module.scss';
+import { IMember } from '../../../store/reducers/membersSlice';
 
 const MemberCard: React.FC<IMember> = ({
   avatar,
   firstName,
   lastName,
   membership,
-  id,
+  _id: id,
   homeLocation,
-  room,
 }) => {
   return (
     <div className={styles.card}>
@@ -25,7 +24,7 @@ const MemberCard: React.FC<IMember> = ({
         <div className={styles.role}>{id === '1' ? membership : membership + ' ' + id}</div>
       </div>
       <div className={styles.cardBottom}>
-        <div className={styles.status}>Status: {room ? 'At home' : 'Out'}</div>
+        <div className={styles.status}>Status: {homeLocation ? 'At home' : 'Out'}</div>
         <div className={styles.room}>{homeLocation}</div>
       </div>
       <button className={`${styles.sendMessageBtn} btn`}>

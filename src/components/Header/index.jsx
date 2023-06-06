@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Notification from '../Notification';
 import { SettingsIcon, UserIcon } from '../SvgIcons';
 import Logo from '../Logo';
+import Signout from '../Signout/Signout';
 
 const Header = ({ width }) => {
   return (
@@ -16,6 +17,9 @@ const Header = ({ width }) => {
           {width < 1024 ? <Logo /> : null}
           {/* <input className={styles.search} type="text" placeholder="Search" /> */}
           <div className={styles.buttons}>
+            <div className={styles.headerBtn}>
+              <Signout />
+            </div>
             <div className={styles.headerBtn}>
               <Link to="/settings" className="btn">
                 <SettingsIcon classNames={styles.headerIcon} />

@@ -1,12 +1,12 @@
 .termometherWrapper {
   display: flex;
   justify-content: center;
-  min-height: 176px;
   box-shadow: 0px -6px 60px rgba(29, 35, 67, 0.14);
   border-radius: 25px;
   position: relative;
   overflow: hidden;
   width: 76px;
+  height: 176px;
   margin: 0 auto;
 }
 

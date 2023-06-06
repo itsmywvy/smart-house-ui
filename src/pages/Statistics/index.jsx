@@ -15,6 +15,7 @@ import { useDispatch } from 'react-redux';
 import { fetchStatistics } from '../../features/statisticsSlice';
 import Title from '../../components/common/Title';
 import Subtitle from '../../components/common/Subtitle';
+import Layout from '../../components/Layout/Layout';
 
 const Statistics = () => {
   const options = {
@@ -72,7 +73,7 @@ const Statistics = () => {
   }, []);
 
   return (
-    <>
+    <Layout>
       <Title classNames={styles.title}>Statistics</Title>
       <div className={styles.grid}>
         <div className={`${styles.gridItem} ${styles.gridItem__elec}`}>
@@ -112,7 +113,7 @@ const Statistics = () => {
           {/* Сделать списком и проитерировать */}
           <div className={styles.devices}>
             <div className={styles.devices__item}>
-              <div classNames={`${styles.devices__icon} block--dark-blue`}>
+              <div className={`${styles.devices__icon} block--dark-blue`}>
                 <TvIcon />
               </div>
               <span>TV</span>
@@ -150,7 +151,7 @@ const Statistics = () => {
           </div>
         </div>
       </div>
-    </>
+    </Layout>
   );
 };
 

@@ -13,16 +13,19 @@ import {
   StatisticsIcon,
 } from '../../components/SvgIcons';
 import Logo from '../Logo';
-
-const navLinks = [
-  { url: '/rooms/bedroom', name: 'Rooms', icon: <HomeIcon /> },
-  { url: '/security', name: 'Security', icon: <SecurityIcon /> },
-  { url: '/statistics', name: 'Statistics', icon: <StatisticsIcon /> },
-  { url: '/members', name: 'Members', icon: <MembersIcon /> },
-  { url: '/billing', name: 'Billing', icon: <BillingIcon /> },
-];
+import { useSelector } from 'react-redux';
 
 const Sidebar = ({ width }) => {
+  const currentRoom = useSelector((state) => state.rooms.currentRoom);
+
+  const navLinks = [
+    { url: `/rooms/${currentRoom}`, name: 'Rooms', icon: <HomeIcon /> },
+    { url: '/security', name: 'Security', icon: <SecurityIcon /> },
+    { url: '/statistics', name: 'Statistics', icon: <StatisticsIcon /> },
+    { url: '/members', name: 'Members', icon: <MembersIcon /> },
+    { url: '/billing', name: 'Billing', icon: <BillingIcon /> },
+  ];
+
   return (
     <aside className={styles.sidebar}>
       {width > 1024 && <Logo />}
