@@ -9,11 +9,13 @@
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
+  justify-content: space-between;
 
   &__item {
     display: flex;
     padding: 13px 20px 15px 18px;
-    flex: 0 1 218px;
+    flex: 0 1 262px;
+    gap: 27px;
 
     background: #ffffff;
 
@@ -29,7 +31,6 @@
 .info {
   display: flex;
   flex-direction: column;
-  margin-right: 27px;
   min-width: 110px;
 
   &__text {
@@ -60,9 +61,10 @@
 }
 
 .deviceWrapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 163px);
+  justify-content: space-between;
+  grid-gap: 30px;
 
   color: #fff;
 

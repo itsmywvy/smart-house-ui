@@ -128,7 +128,6 @@ export const loginUser = createAsyncThunk(
       const { data: user } = await axios.post(`${BASE_URL}/user/login`, data, config);
       // store user's token in session storage
       setJwtToken(user.token);
-      debugger;
       return user;
     } catch (error: any) {
       // // return custom error message from API if any
