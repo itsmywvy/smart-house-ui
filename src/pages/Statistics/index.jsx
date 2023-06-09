@@ -16,12 +16,41 @@ import Subtitle from '../../components/common/Subtitle';
 import Layout from '../../components/Layout';
 
 import styles from './Statistics.module.scss';
+import Box from '../../components/common/Box';
+
+const devices = [
+  {
+    name: 'TV',
+    icon: <TvIcon />,
+  },
+  {
+    name: 'Kettle',
+    icon: <KettleIcon />,
+  },
+  {
+    name: 'Washer',
+    icon: <WasherIcon />,
+  },
+  {
+    name: 'Fridge',
+    icon: <FridgeIcon />,
+  },
+  {
+    name: 'Stove',
+    icon: <StoveIcon />,
+  },
+  {
+    name: 'PC',
+    icon: <PcIcon />,
+  },
+];
 
 const Statistics = () => {
   const options = {
     optionsLine: {
       responsive: true,
-      aspectRatio: 3,
+      maintainAspectRatio: false,
+      // aspectRatio: 3,
       plugins: {
         legend: {
           display: false,
@@ -41,7 +70,8 @@ const Statistics = () => {
       cutout: 25,
       hover: false,
       legend: false,
-      responsive: false,
+      responsive: true,
+      maintainAspectRatio: false,
       borderAlign: 'inner',
       plugins: {
         tooltip: {
@@ -49,6 +79,7 @@ const Statistics = () => {
         },
         legend: {
           position: 'bottom',
+          align: 'start',
           labels: {
             usePointStyle: true,
             color: 'rgba(29, 35, 67, 0.75)',
@@ -81,79 +112,59 @@ const Statistics = () => {
     <Layout>
       <Title classNames={styles.title}>Statistics</Title>
       <div className={styles.statistics}>
-        <div className={styles.statistics__item}>
+        <div className={styles.statistics__electricity}>
           <Subtitle classNames={styles.subtitle}>Electricity</Subtitle>
-          <div className={styles.blockWrapper}>
-            <Line data={electricity} options={options.optionsLine} id="electricity" />
-          </div>
+          <Box>
+            <div className={styles.blockWrapper}>
+              <Line data={electricity} options={options.optionsLine} id="electricity" />
+            </div>
+          </Box>
         </div>
-        <div className={styles.statistics__item}>
+        <div className={styles.statistics__water}>
           <Subtitle classNames={styles.subtitle}>Water</Subtitle>
-          <div className={styles.blockWrapper}>
-            <Line data={water} options={options.optionsLine} id="water" />
-          </div>
+          <Box>
+            <div className={styles.blockWrapper}>
+              <Line data={water} options={options.optionsLine} id="water" />
+            </div>
+          </Box>
         </div>
-        <div className={styles.statistics__item}>
-          <Subtitle classNames={styles.subtitle}>Water Management</Subtitle>
-          <div className={styles.blockWrapper}>
-            <Line data={waste} options={options.optionsLine} id="waste" />
-          </div>
+        <div className={styles.statistics__waste}>
+          <Subtitle classNames={styles.subtitle}>Waste Management</Subtitle>
+          <Box>
+            <div className={styles.blockWrapper}>
+              <Line data={waste} options={options.optionsLine} id="waste" />
+            </div>
+          </Box>
         </div>
-        <div className={styles.statistics__item}>
+        <div className={styles.statistics__sorting}>
           <Subtitle classNames={styles.subtitle}>Sorting</Subtitle>
-          <div className={styles.blockWrapper}>
-            <div className={styles.sortingDate}>
-              {`${water.labels[new Date().getMonth() + 1]}, ${new Date().getUTCFullYear()}`}
+
+          <Box>
+            <div className={styles.blockWrapper}>
+              <div className={styles.sortingDate}>
+                {`${water.labels[new Date().getMonth() + 1]}, ${new Date().getUTCFullYear()}`}
+              </div>
+              <Doughnut
+                data={sorting}
+                id="sort"
+                options={options.optionsDoughnut}
+                style={{ margin: '0 auto' }}
+              />
             </div>
-            <Doughnut
-              data={sorting}
-              id="sort"
-              options={options.optionsDoughnut}
-              style={{ margin: '0 auto' }}
-            />
-          </div>
+          </Box>
         </div>
-        <div className={styles.statistics__item}>
+        <div className={styles.statistics__devices}>
           <Subtitle classNames={styles.subtitle}>Devices</Subtitle>
-          {/* Сделать списком и проитерировать */}
-          <div className={styles.devices}>
-            <div className={styles.devices__item}>
-              <div className={`${styles.devices__icon} block--dark-blue`}>
-                <TvIcon />
-              </div>
-              <span>TV</span>
-            </div>
-            <div className={styles.devices__item}>
-              <div className={`${styles.devices__icon} block--red`}>
-                <KettleIcon />
-              </div>
-              <span>Kettle</span>
-            </div>
-            <div className={styles.devices__item}>
-              <div className={`${styles.devices__icon} block--blue`}>
-                <WasherIcon />
-              </div>
-              <span>Washer</span>
-            </div>
-            <div className={styles.devices__item}>
-              <div className={`${styles.devices__icon} block--red`}>
-                <FridgeIcon />
-              </div>
-              <span>Fridge</span>
-            </div>
-            <div className={styles.devices__item}>
-              <div className={`${styles.devices__icon} block--blue`}>
-                <StoveIcon />
-              </div>
-              <span>Stove</span>
-            </div>
-            <div className={styles.devices__item}>
-              <div className={`${styles.devices__icon} block--dark-blue`}>
-                <PcIcon />
-              </div>
-              <span>PC</span>
-            </div>
-          </div>
+          <Box>
+            <ul className={styles.devices}>
+              {devices.map((device, i) => (
+                <li className={styles.devices__item} key={i}>
+                  <div className={styles.devices__icon}>{device.icon}</div>
+                  <span>{device.name}</span>
+                </li>
+              ))}
+            </ul>
+          </Box>
         </div>
       </div>
     </Layout>
