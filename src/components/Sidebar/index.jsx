@@ -31,22 +31,17 @@ const Sidebar = ({ width }) => {
         </NavLink>
       )}
       <nav className={styles.nav}>
-        <ul className={styles.navList}>
-          {navLinks.map((link, i) => (
-            <li className={styles.listItem} key={i}>
-              <NavLink
-                to={link.url}
-                className={({ isActive }) =>
-                  isActive
-                    ? [styles.listItem__link, styles.activeLink].join(' ')
-                    : styles.listItem__link
-                }>
-                {link.icon}
-                <span className={styles.listItem__text}>{link.name}</span>
-              </NavLink>
-            </li>
-          ))}
-        </ul>
+        {navLinks.map((link, i) => (
+          <NavLink
+            to={link.url}
+            key={i}
+            className={({ isActive }) =>
+              isActive ? [styles.nav__link, styles.active].join(' ') : styles.nav__link
+            }>
+            {link.icon}
+            <span className={styles['nav__link-text']}>{link.name}</span>
+          </NavLink>
+        ))}
       </nav>
     </aside>
   );
