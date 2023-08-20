@@ -8,17 +8,17 @@ const Shortcuts = () => {
     <div className={styles.shortcuts}>
       <h3>Shortcuts</h3>
       <div className={styles['shortcuts-wrapper']}>
-        <div className={`${styles.shortcut} block--red`}>
+        <div className={`${styles.shortcut}`}>
           <WifiIcon />
           <span>WI-FI</span>
         </div>
 
-        <div className={`${styles.shortcut} block--blue`}>
+        <div className={styles.shortcut}>
           <MusicIcon />
           <span>Music</span>
         </div>
 
-        <div className={`${styles.shortcut} block--dark-blue`}>
+        <div className={styles.shortcut}>
           <IntercomIcon />
           <span>Intercom</span>
         </div>
