@@ -15,12 +15,6 @@
   box-sizing: border-box;
 }
 
-@mixin grey-blur($blur) {
-  background: rgba(184, 184, 184, 0.6);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur($blur);
-}
-
 html {
   scroll-behavior: smooth;
 }
