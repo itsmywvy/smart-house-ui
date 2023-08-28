@@ -1,12 +1,15 @@
 import React from 'react';
 
-import styles from './LegendsLine.module.scss';
+import styles from './LegendsLineList.module.scss';
 
-const LegendLine = ({ list }) => {
+const LegendLineList = ({ list, handleToggle }) => {
   return (
     <ul className={styles.list}>
       {list.datasets.map((item, i) => (
-        <li key={i} className={styles.listItem}>
+        <li
+          key={i}
+          className={`${styles.listItem} ${!item.active ? styles.listItem__active : ''}`}
+          onClick={() => handleToggle(i)}>
           <div
             className={styles.listItemBullet}
             style={{
@@ -20,4 +23,4 @@ const LegendLine = ({ list }) => {
   );
 };
 
-export default LegendLine;
+export default LegendLineList;

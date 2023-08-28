@@ -3,18 +3,56 @@ import { Line } from 'react-chartjs-2';
 import CurrentInvoice from '../../components/CurrentInvoice';
 import Preloader from '../../components/common/Preloader';
 import { shallowEqual, useSelector } from 'react-redux';
-import { fetchChartData, useGetHistoryDataQuery } from '../../store/reducers/billingSlice';
+import {
+  fetchChartData,
+  toggleLegendName,
+  useGetHistoryDataQuery,
+} from '../../store/reducers/billingSlice';
 import Title from '../../components/common/Title';
 import Subtitle from '../../components/common/Subtitle';
 import Table from '../../components/Table';
 import Box from '../../components/common/Box';
-import LegendLine from '../../components/LegendLine';
+import LegendLineList from '../../components/LegendLineList';
 import Layout from '../../components/Layout';
 import { useAppDispatch } from '../../hooks/redux';
 
 import styles from './Billing.module.scss';
 
 const Billing = () => {
+  const dispatch = useAppDispatch();
+  const { invoicingChart, isFetching, payStatus, currentInvoice, history } = useSelector(
+    (state) => ({
+      invoicingChart: state.billing.invoicingChart,
+      isFetching: state.billing.isFetching,
+      payStatus: state.billing.payStatus,
+      currentInvoice: state.billing.currentInvoice,
+    }),
+    shallowEqual,
+  );
+
+  const lineRef = React.useRef();
+
+  const {
+    data: historyData = [],
+    isLoading: isLoadingHistory,
+    error: errorHistory,
+  } = useGetHistoryDataQuery();
+
+  React.useEffect(() => {
+    dispatch(fetchChartData());
+  }, []);
+
+  const handleToggleLegend = (index) => {
+    const visibilityData = lineRef.current.isDatasetVisible(index);
+    if (visibilityData) {
+      lineRef.current.hide(index);
+      dispatch(toggleLegendName(index));
+    } else {
+      lineRef.current.show(index);
+      dispatch(toggleLegendName(index));
+    }
+  };
+
   const options = {
     optionsLine: {
       maintainAspectRatio: false,
@@ -37,26 +75,6 @@ const Billing = () => {
       },
     },
   };
-  const dispatch = useAppDispatch();
-  const { invoicingChart, isFetching, payStatus, currentInvoice, history } = useSelector(
-    (state) => ({
-      invoicingChart: state.billing.invoicingChart,
-      isFetching: state.billing.isFetching,
-      payStatus: state.billing.payStatus,
-      currentInvoice: state.billing.currentInvoice,
-    }),
-    shallowEqual,
-  );
-
-  const {
-    data: historyData = [],
-    isLoading: isLoadingHistory,
-    error: errorHistory,
-  } = useGetHistoryDataQuery();
-
-  React.useEffect(() => {
-    dispatch(fetchChartData());
-  }, []);
 
   return (
     <Layout>
@@ -75,14 +93,19 @@ const Billing = () => {
           <div className={styles.billingContentItem__chart}>
             <div className={styles['billingContentItem__chart-header']}>
               <Subtitle classNames={styles.subtitle}>Invoicing Chart</Subtitle>
-              <LegendLine list={invoicingChart} />
+              <LegendLineList list={invoicingChart} handleToggle={handleToggleLegend} />
             </div>
             {isFetching.chartData ? (
               <Preloader />
             ) : (
               <Box>
                 <div style={{ position: 'relative', height: '30vh' }}>
-                  <Line id="currentInvoice" data={invoicingChart} options={options.optionsLine} />
+                  <Line
+                    ref={lineRef}
+                    id="currentInvoice"
+                    data={invoicingChart}
+                    options={options.optionsLine}
+                  />
                 </div>
               </Box>
             )}
