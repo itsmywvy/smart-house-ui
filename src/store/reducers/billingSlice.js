@@ -64,6 +64,7 @@ const initialState = {
         borderColor: '#ee777f',
         tension: 0.5,
         label: '',
+        active: true,
       },
       {
         data: [],
@@ -71,6 +72,7 @@ const initialState = {
         borderColor: '#1D2343',
         tension: 0.5,
         label: '',
+        active: true,
       },
       {
         data: [],
@@ -78,6 +80,7 @@ const initialState = {
         borderColor: '#65bdc0',
         tension: 0.5,
         label: '',
+        active: true,
       },
     ],
   },
@@ -108,6 +111,14 @@ export const billingSlice = createSlice({
     },
     deleteCurrentInvoice(state, { payload }) {
       state.currentInvoice.filter((item) => item.number !== payload);
+    },
+    toggleLegendName(state, { payload }) {
+      state.invoicingChart.datasets.map((item, index) => {
+        if (index === payload) {
+          item.active = !item.active;
+        }
+        return item;
+      });
     },
   },
   extraReducers: (builder) => {
@@ -145,5 +156,6 @@ export const billingSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { getCurrentInvoice, getTotalBill, deleteCurrentInvoice } = billingSlice.actions;
+export const { getCurrentInvoice, getTotalBill, deleteCurrentInvoice, toggleLegendName } =
+  billingSlice.actions;
 export default billingSlice.reducer;

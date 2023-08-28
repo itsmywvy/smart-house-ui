@@ -28,7 +28,7 @@ export const setupStore = () => {
     reducer: rootReducer,
     // middleware: [thunk],
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat([
+      getDefaultMiddleware({ serializableCheck: false }).concat([
         historyDataApi.middleware,
         membersDataApi.middleware,
         usersDataApi.middleware,
