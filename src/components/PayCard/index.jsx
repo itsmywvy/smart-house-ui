@@ -1,7 +1,9 @@
 import React from 'react';
-import chip from '../../assets/images/chip.png';
+import chipIcon from '../../assets/images/chip.png';
 import visaLogo from '../../assets/images/visa.png';
 import mastercardLogo from '../../assets/images/mastercard.png';
+
+import styles from './PayCard.module.scss';
 
 const PayCard = () => {
   const [number, setNumber] = React.useState('5234567891234567');
@@ -34,26 +36,26 @@ const PayCard = () => {
   }, []);
 
   return (
-    <div className="scene">
-      <div className="card">
-        <div className="card__front">
-          <div className="top">
-            <div className="chip">
-              <img src={chip} alt="" />
+    <div className={styles.scene}>
+      <div className={styles.card}>
+        <div className={styles.card__frontside}>
+          <div className={styles.card__top}>
+            <div className={styles.card__chip}>
+              <img src={chipIcon} alt="" />
             </div>
-            <div className="system">{definePaymentSystem}</div>
+            <div className={styles.card__system}>{definePaymentSystem}</div>
           </div>
-          <div className="number">{hiddenPaymentNumbers}</div>
-          <div className="info">
-            <div className="name">{name}</div>
-            <div className="expires">{expires}</div>
+          <div className={styles.card__number}>{hiddenPaymentNumbers}</div>
+          <div className={styles.card__info}>
+            <div className={styles.card__name}>{name}</div>
+            <div className={styles.card__expires}>{expires}</div>
           </div>
         </div>
-        <div className="card__back">
-          <div className="stripe"></div>
-          <div className="sign">
-            <div className="sign__stripe"></div>
-            <div className="cvc-code">353</div>
+        <div className={styles.card__backside}>
+          <div className={styles.card__stripe}></div>
+          <div className={styles.card__sign}>
+            <div className={styles.card__sign__stripe}></div>
+            <div className={styles.card__code}>353</div>
           </div>
         </div>
       </div>
