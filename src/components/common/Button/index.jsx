@@ -6,30 +6,25 @@ import styles from './Button.module.scss';
 
 type ButtonProps = {
   type?: string,
-  flags?: any,
   variant?: string,
   children?: React.ReactNode,
   onSmash?: () => void,
+  disabled?: Boolean,
 };
 
-const Button = ({ type, flags, variant, children, onSmash }: ButtonProps) => {
-  const { isLoading, isSuccess, isError, isUninitialized } = flags;
-
+const Button = ({ type, variant, children, onSmash, disabled }: ButtonProps, ref) => {
   const variantButton = variant === 'pay' ? styles.pay : variant === 'auth' ? styles.auth : '';
 
   return (
     <button
+      ref={ref}
       type={type ? type : 'button'}
-      disabled={isLoading}
-      className={`${styles.btn} ${variantButton} ${isSuccess && styles.success}`}
+      disabled={disabled}
+      className={`${styles.btn} ${variant ? variantButton : ''}`}
       onClick={onSmash}>
-      {isLoading && <img className={styles.btnIcon} src={preloader} alt="" />}
-      {isSuccess && <CheckmarkIcon />}
-      {isError && <span>Something went wrong</span>}
-      {/* {isUninitialized && <span>{children}</span>} */}
-      <span>{children}</span>
+      {children}
     </button>
   );
 };
 
-export default Button;
+export default React.forwardRef(Button);
