@@ -85,7 +85,7 @@ const Login = () => {
               minLength: 8,
             }}
           />
-          <Button type="submit" variant="auth" flags={{ isError, isLoading, isSuccess }}>
+          <Button type="submit" variant="auth">
             Sign in
           </Button>
 

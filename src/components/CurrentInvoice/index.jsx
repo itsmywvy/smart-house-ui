@@ -74,7 +74,7 @@ const CurrentInvoice = React.memo(({ invoicingData, isLoading }) => {
           </div>
         </div>
       )}
-      <Button flags={mutateFlags} onClickHandle={() => onClickPay(currentItem.id)}>
+      <Button variant="pay" onSmash={() => onClickPay(currentItem.id)}>
         Pay
       </Button>
     </div>

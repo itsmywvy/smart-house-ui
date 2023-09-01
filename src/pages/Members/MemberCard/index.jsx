@@ -3,6 +3,7 @@ import { MessageIcon, MembersIcon } from '../../../components/SvgIcons';
 
 import styles from './MemberCard.module.scss';
 import { IMember } from '../../../store/reducers/membersSlice';
+import Button from '../../../components/common/Button';
 
 const MemberCard = ({ member, onClickChat, setCurrentMember }) => {
   const { firstName, lastName, membership, homeLocation, id, avatar } = member;
@@ -31,9 +32,9 @@ const MemberCard = ({ member, onClickChat, setCurrentMember }) => {
         <div className={styles.status}>Status: {homeLocation ? 'At home' : 'Out'}</div>
         <div className={styles.room}>{homeLocation}</div>
       </div>
-      <button onClick={onClickChat} className={`${styles.sendMessageBtn} btn`}>
+      <Button onSmash={onClickChat} className={`${styles.sendMessageBtn}`}>
         <MessageIcon />
-      </button>
+      </Button>
     </div>
   );
 };

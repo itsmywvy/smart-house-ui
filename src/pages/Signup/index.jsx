@@ -117,7 +117,7 @@ const Signup = () => {
             required
           />
 
-          <Button type="submit" variant="auth" flags={{ isError, isLoading, isSuccess }}>
+          <Button type="submit" variant="auth">
             Create account
           </Button>
 
