@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import Form from '../../components/Form';
 import styles from './Settings.module.scss';
 import { useDispatch } from 'react-redux';
+import Button from '../../components/common/Button';
 
 const months = [
   'January',
@@ -97,7 +98,7 @@ const Settings = () => {
             <option key={i}>{year}</option>
           ))}
         </select>
-        <button>Save</button>
+        <Button type="submit">Save</Button>
       </Form>
     </Layout>
   );

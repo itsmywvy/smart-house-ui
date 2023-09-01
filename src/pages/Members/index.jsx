@@ -73,7 +73,7 @@ const Members = () => {
       <div className={styles.membersCards}>
         {cards}
         <div className={`${styles.card} ${styles.emptyCard}`}>
-          <Button className="btn btn-add" onSmash={() => setShowModal(true)}>
+          <Button onSmash={() => setShowModal(true)}>
             <AddMemberIcon />
           </Button>
         </div>
