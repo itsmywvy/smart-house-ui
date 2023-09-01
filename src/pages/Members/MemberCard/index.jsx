@@ -32,9 +32,11 @@ const MemberCard = ({ member, onClickChat, setCurrentMember }) => {
         <div className={styles.status}>Status: {homeLocation ? 'At home' : 'Out'}</div>
         <div className={styles.room}>{homeLocation}</div>
       </div>
-      <Button onSmash={onClickChat} className={`${styles.sendMessageBtn}`}>
-        <MessageIcon />
-      </Button>
+      <div className={`${styles.sendMessageBtn}`}>
+        <Button onSmash={onClickChat}>
+          <MessageIcon />
+        </Button>
+      </div>
     </div>
   );
 };
