@@ -12,12 +12,19 @@ import Signup from './pages/Signup';
 import Security from './pages/Security';
 import ProtectedRoute from './pages/ProtectedRoute/ProtectedRoute';
 import Settings from './pages/Settings';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useHref, useNavigate } from 'react-router-dom';
 
 import './App.scss';
 
 function App() {
   const [width] = useWindowSize();
+  const href = useHref();
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    localStorage.setItem('currentUrl', href);
+    navigate(localStorage.getItem('currentUrl'));
+  }, [href]);
 
   return (
     <>
