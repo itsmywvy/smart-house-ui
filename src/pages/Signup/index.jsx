@@ -22,13 +22,10 @@ const Signup = () => {
   } = useForm();
   const navigate = useNavigate();
 
-  const { userToken, isLoading, isError, isSuccess, userInfo } = useSelector(
+  const { userToken, isSuccess } = useSelector(
     (state) => ({
       userToken: state.auth.userToken,
-      isLoading: state.auth.isLoading,
-      isError: state.auth.isError,
       isSuccess: state.auth.isSuccess,
-      userInfo: state.auth.userInfo,
     }),
     shallowEqual,
   );
