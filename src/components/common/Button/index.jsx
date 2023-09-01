@@ -10,15 +10,17 @@ type ButtonProps = {
   children?: React.ReactNode,
   onSmash?: () => void,
   disabled?: Boolean,
+  style?: string,
 };
 
-const Button = ({ type, variant, children, onSmash, disabled }: ButtonProps, ref) => {
+const Button = ({ type, variant, children, onSmash, disabled, style }: ButtonProps, ref) => {
   const variantButton = variant === 'pay' ? styles.pay : variant === 'auth' ? styles.auth : '';
 
   return (
     <button
       ref={ref}
       type={type ? type : 'button'}
+      style={style}
       disabled={disabled}
       className={`${styles.btn} ${variant ? variantButton : ''}`}
       onClick={onSmash}>

@@ -22,13 +22,10 @@ const Signup = () => {
   } = useForm();
   const navigate = useNavigate();
 
-  const { userToken, isLoading, isError, isSuccess, userInfo } = useSelector(
+  const { userToken, isSuccess } = useSelector(
     (state) => ({
       userToken: state.auth.userToken,
-      isLoading: state.auth.isLoading,
-      isError: state.auth.isError,
       isSuccess: state.auth.isSuccess,
-      userInfo: state.auth.userInfo,
     }),
     shallowEqual,
   );
@@ -117,7 +114,7 @@ const Signup = () => {
             required
           />
 
-          <Button type="submit" variant="auth" flags={{ isError, isLoading, isSuccess }}>
+          <Button type="submit" variant="auth">
             Create account
           </Button>
 

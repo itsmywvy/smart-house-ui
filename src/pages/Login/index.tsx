@@ -21,18 +21,11 @@ type FormValues = {
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const {
-    register,
-    reset,
-    // formState: { errors },
-  } = useForm<FormValues>();
+  const { register, reset } = useForm<FormValues>();
 
-  const { userToken, isLoading, isError, isSuccess } = useAppSelector(
+  const { userToken } = useAppSelector(
     (state) => ({
       userToken: state.auth.userToken,
-      isLoading: state.auth.isLoading,
-      isError: state.auth.isError,
-      isSuccess: state.auth.isSuccess,
     }),
     shallowEqual,
   );
@@ -85,7 +78,7 @@ const Login = () => {
               minLength: 8,
             }}
           />
-          <Button type="submit" variant="auth" flags={{ isError, isLoading, isSuccess }}>
+          <Button type="submit" variant="auth">
             Sign in
           </Button>
 

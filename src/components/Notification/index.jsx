@@ -2,6 +2,7 @@ import React from 'react';
 import { NotifyIcon } from '../SvgIcons';
 
 import styles from './Notification.module.scss';
+import Button from '../common/Button';
 
 const Notification = () => {
   const [popUpActive, setPopUpActive] = React.useState(false);
@@ -26,9 +27,9 @@ const Notification = () => {
 
   return (
     <div className={styles['notification-wrapper']}>
-      <button ref={currentBtnRef} className="btn" onClick={onClickedNotify}>
+      <Button className="btn" onSmash={() => onClickedNotify()} ref={currentBtnRef}>
         <NotifyIcon />
-      </button>
+      </Button>
       {popUpActive && (
         <ul ref={currentWindowRef} className={styles['notification-list']}>
           <li>Haven’t got any notifications yet</li>

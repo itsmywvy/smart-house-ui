@@ -17,6 +17,7 @@ import Avatar from '../../components/common/Avatar';
 import Chat from '../../components/Chat';
 
 import socketIO from 'socket.io-client';
+import Button from '../../components/common/Button';
 // const socket = socketIO.connect('http://localhost:5000');
 
 const Members = () => {
@@ -72,9 +73,9 @@ const Members = () => {
       <div className={styles.membersCards}>
         {cards}
         <div className={`${styles.card} ${styles.emptyCard}`}>
-          <button className="btn btn-add" onClick={() => setShowModal(true)}>
+          <Button onSmash={() => setShowModal(true)}>
             <AddMemberIcon />
-          </button>
+          </Button>
         </div>
       </div>
       <Modal visible={showModal} setVisible={setShowModal}>
@@ -114,11 +115,11 @@ const Members = () => {
                 </div>
                 <span>{member.firstName}</span>
                 <span>{member.lastName}</span>
-                <button
-                  onClick={() => handleOnAddMember(user.id, member.id)}
+                <Button
+                  onSmash={() => handleOnAddMember(user.id, member.id)}
                   style={{ position: 'absolute', right: 0, width: 40 }}>
                   <img src={checkmarkIcon} alt="" />
-                </button>
+                </Button>
               </li>
             ))
           ) : (
