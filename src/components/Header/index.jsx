@@ -43,16 +43,16 @@ const Header = ({ width }) => {
             </Link>
           ) : null}
           {/* <input className={styles.search} type="text" placeholder="Search" /> */}
-          <div className={styles.buttons}>
-            <div className={styles.headerBtn}>
+          <ul className={styles.buttons}>
+            <li className={styles.headerBtn}>
               <Link to="/settings" className="btn">
                 <SettingsIcon classNames={styles.headerIcon} />
               </Link>
-            </div>
-            <div className={styles.headerBtn}>
+            </li>
+            <li className={styles.headerBtn}>
               <Notification />
-            </div>
-            <div className={styles.headerBtn}>
+            </li>
+            <li className={styles.headerBtn}>
               <Dropdown
                 trigger={
                   <div>
@@ -66,8 +66,8 @@ const Header = ({ width }) => {
                   </div>,
                 ]}
               />
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       </div>
     </header>
