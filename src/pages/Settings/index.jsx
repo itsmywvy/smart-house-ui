@@ -87,8 +87,8 @@ const Settings = () => {
         />
         <select {...register('month')}>
           <option disabled>MONTH</option>
-          {months.map((month) => (
-            <option>{month}</option>
+          {months.map((month, i) => (
+            <option key={i}>{month}</option>
           ))}
         </select>
 
