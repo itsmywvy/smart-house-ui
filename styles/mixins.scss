@@ -7,3 +7,9 @@
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur($blur);
 }
+
+@mixin form-label($color: #8b929a) {
+  color: $color;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
