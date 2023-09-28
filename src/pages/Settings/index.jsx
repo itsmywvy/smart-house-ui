@@ -10,7 +10,7 @@ import Form from '../../components/Form';
 import styles from './Settings.module.scss';
 import { useDispatch } from 'react-redux';
 import Button from '../../components/common/Button';
-import Select from '../../components/common/Select';
+// import Select from '../../components/common/Select';
 
 const months = [
   { value: '01', name: 'January' },
@@ -104,7 +104,7 @@ const Settings = () => {
           register={register}
           half
         />
-        <Select
+        {/* <Select
           onChange={(value) => setExpiresData({ ...expiresData, month: value })}
           defaultValue="Months"
           value={expiresData.month}
@@ -115,7 +115,7 @@ const Settings = () => {
           defaultValue="Years"
           value={expiresData.year}
           optionsList={years}
-        />
+        /> */}
 
         <Button type="submit">Save</Button>
       </Form>

@@ -55,7 +55,7 @@ const PayCard = () => {
           <div className={styles.card__stripe}></div>
           <div className={styles.card__sign}>
             <div className={styles.card__sign__stripe}></div>
-            <div className={styles.card__code}>353</div>
+            <div className={styles.card__cvc}>353</div>
           </div>
         </div>
       </div>
