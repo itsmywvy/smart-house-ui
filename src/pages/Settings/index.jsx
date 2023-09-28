@@ -10,7 +10,7 @@ import Form from '../../components/Form';
 import styles from './Settings.module.scss';
 import { useDispatch } from 'react-redux';
 import Button from '../../components/common/Button';
-// import Select from '../../components/common/Select';
+import Select from '../../components/common/Select';
 
 const months = [
   { value: '01', name: 'January' },
