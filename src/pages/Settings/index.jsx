@@ -10,28 +10,46 @@ import Form from '../../components/Form';
 import styles from './Settings.module.scss';
 import { useDispatch } from 'react-redux';
 import Button from '../../components/common/Button';
+// import Select from '../../components/common/Select';
 
 const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
+  { value: '01', name: 'January' },
+  { value: '02', name: 'February' },
+  { value: '03', name: 'March' },
+  { value: '04', name: 'April' },
+  { value: '05', name: 'May' },
+  { value: '06', name: 'June' },
+  { value: '07', name: 'July' },
+  { value: '08', name: 'August' },
+  { value: '09', name: 'September' },
+  { value: '10', name: 'October' },
+  { value: '11', name: 'November' },
+  { value: '12', name: 'December' },
 ];
 
-const years = [22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35];
+const years = [
+  { value: 22, name: '22' },
+  { value: 23, name: '23' },
+  { value: 24, name: '24' },
+  { value: 25, name: '25' },
+  { value: 26, name: '26' },
+  { value: 27, name: '27' },
+  { value: 28, name: '28' },
+  { value: 29, name: '29' },
+  { value: 30, name: '30' },
+  { value: 31, name: '31' },
+  { value: 32, name: '32' },
+  { value: 33, name: '33' },
+];
 
 const Settings = () => {
   const dispatch = useDispatch();
   const [updateAvatar] = useUpdateAvatarMutation();
-  const [paymentData, setPaymentData] = React.useState(null);
+  const [paymentData, setPaymentData] = React.useState({});
+  const [expiresData, setExpiresData] = React.useState({
+    month: '',
+    year: null,
+  });
 
   const { data: user } = useGetUserDetailsQuery();
 
@@ -46,8 +64,9 @@ const Settings = () => {
 
   const onSubmitForm = (data) => {
     // dispatch()
-    setPaymentData(data);
-    console.log(data);
+    console.log(expiresData);
+    setPaymentData({ ...data, ...expiresData });
+    console.log(paymentData);
   };
 
   return (
@@ -85,19 +104,19 @@ const Settings = () => {
           register={register}
           half
         />
-        <select {...register('month')}>
-          <option disabled>MONTH</option>
-          {months.map((month) => (
-            <option>{month}</option>
-          ))}
-        </select>
+        <Select
+          onChange={(value) => setExpiresData({ ...expiresData, month: value })}
+          defaultValue="Months"
+          value={expiresData.month}
+          optionsList={months}
+        />
+        <Select
+          onChange={(value) => setExpiresData({ ...expiresData, year: value })}
+          defaultValue="Years"
+          value={expiresData.year}
+          optionsList={years}
+        />
 
-        <select {...register('year')}>
-          <option disabled>MONTH</option>
-          {years.map((year, i) => (
-            <option key={i}>{year}</option>
-          ))}
-        </select>
         <Button type="submit">Save</Button>
       </Form>
     </Layout>
