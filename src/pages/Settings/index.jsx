@@ -27,7 +27,20 @@ const months = [
   { value: '12', name: 'December' },
 ];
 
-const years = [22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33];
+const years = [
+  { value: 22, name: '22' },
+  { value: 23, name: '23' },
+  { value: 24, name: '24' },
+  { value: 25, name: '25' },
+  { value: 26, name: '26' },
+  { value: 27, name: '27' },
+  { value: 28, name: '28' },
+  { value: 29, name: '29' },
+  { value: 30, name: '30' },
+  { value: 31, name: '31' },
+  { value: 32, name: '32' },
+  { value: 33, name: '33' },
+];
 
 const Settings = () => {
   const dispatch = useDispatch();
