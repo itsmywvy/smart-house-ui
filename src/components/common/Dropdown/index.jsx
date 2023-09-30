@@ -5,15 +5,11 @@ import { useOutsideAlerter } from '../../../hooks/useOutsideAlerter';
 const Dropdown = ({ trigger, menu }) => {
   const [visible, setVisible] = React.useState(false);
   const dropdownRef = React.useRef();
+
   useOutsideAlerter(dropdownRef, () => setVisible(false));
 
-  const handleClick = () => {
-    setVisible((prev) => !visible);
-    console.log(visible);
-  };
-
   return (
-    <div className={styles.dropdown}>
+    <div className={styles.dropdown} ref={dropdownRef}>
       {React.cloneElement(trigger, {
         onClick: () => {
           setVisible(!visible);
@@ -26,9 +22,7 @@ const Dropdown = ({ trigger, menu }) => {
               {React.cloneElement(item, {
                 onClick: () => {
                   item.props.onClick();
-                  setVisible(!visible);
                 },
-                ref: dropdownRef,
               })}
             </li>
           ))}

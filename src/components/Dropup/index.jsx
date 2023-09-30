@@ -14,7 +14,7 @@ const Dropup = ({ data }) => {
   const { roomName } = useParams();
 
   const onClickRoomItem = (item) => {
-    setVisible(false);
+    setVisible(!visible);
   };
 
   const onClickLink = (item) => {
@@ -23,10 +23,10 @@ const Dropup = ({ data }) => {
 
   const dropupRef = React.useRef();
 
-  // useOutsideAlerter(dropupRef, () => setVisible(false));
+  useOutsideAlerter(dropupRef, () => setVisible(false));
 
   return (
-    <div className={styles.dropup}>
+    <div className={styles.dropup} ref={dropupRef}>
       <Box>
         <div onClick={() => setVisible((prev) => !prev)} className={styles.dropup__item}>
           {data.find((item) => item.url === roomName)?.icon || <MenuIcon />}
@@ -36,7 +36,7 @@ const Dropup = ({ data }) => {
       {visible && (
         <div className={styles['dropup-wrapper']}>
           {data.map((link, i) => (
-            <NavLink ref={dropupRef} to={link.url} key={i} onClick={() => onClickLink(link.url)}>
+            <NavLink to={link.url} key={i} onClick={() => onClickLink(link.url)}>
               <Box>
                 <div className={styles.dropup__item} onClick={() => onClickRoomItem(link.url)}>
                   {link.icon}
