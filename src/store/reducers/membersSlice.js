@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
+import { BASE_URL } from '../../api/api';
 
 export interface MemberState {
   data: IMember[];
@@ -29,8 +30,7 @@ export interface IMember {
 export const membersDataApi = createApi({
   reducerPath: 'api/members',
   baseQuery: fetchBaseQuery({
-    // baseUrl: 'https://backend-smart-house-production.up.railway.app/api',
-    baseUrl: 'http://localhost:3001/api/',
+    baseUrl: `${BASE_URL}/api/`,
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.userToken;
       if (token) {

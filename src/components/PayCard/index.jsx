@@ -22,18 +22,18 @@ const PayCard = () => {
       <img src={mastercardLogo} />
     ) : null;
 
-  React.useEffect(() => {
-    async function getBackground() {
-      const response = await fetch('https://api.api-ninjas.com/v1/randomimage?category=nature', {
-        headers: {
-          'X-Api-Key': 'WDt4sIjG3Q9+uqcFvZ4GsQ==76rMTgvr2KMsh2zy',
-          Accept: 'image/jpg',
-        },
-      });
-      setBackground(response.body);
-    }
-    getBackground();
-  }, []);
+  // React.useEffect(() => {
+  //   async function getBackground() {
+  //     const response = await fetch('https://api.api-ninjas.com/v1/randomimage?category=nature', {
+  //       headers: {
+  //         'X-Api-Key': 'WDt4sIjG3Q9+uqcFvZ4GsQ==76rMTgvr2KMsh2zy',
+  //         Accept: 'image/jpg',
+  //       },
+  //     });
+  //     setBackground(response.body);
+  //   }
+  //   getBackground();
+  // }, []);
 
   return (
     <div className={styles.scene}>

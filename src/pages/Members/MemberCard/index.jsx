@@ -4,6 +4,7 @@ import { MessageIcon, MembersIcon } from '../../../components/SvgIcons';
 import styles from './MemberCard.module.scss';
 import { IMember } from '../../../store/reducers/membersSlice';
 import Button from '../../../components/common/Button';
+import { BASE_URL } from '../../../api/api';
 
 const MemberCard = ({ member, onClickChat, setCurrentMember }) => {
   const { firstName, lastName, membership, homeLocation, id, avatar } = member;
@@ -16,7 +17,7 @@ const MemberCard = ({ member, onClickChat, setCurrentMember }) => {
             <img
               crossOrigin="anonymous"
               className={styles.avatar}
-              src={`http://localhost:3001/${avatar}`}
+              src={`${BASE_URL}/${avatar}`}
               alt=""
             />
           ) : (

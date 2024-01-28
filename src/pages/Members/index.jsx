@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { AddMemberIcon } from '../../components/SvgIcons';
 import MemberCard from './MemberCard';
 import Modal from '../../components/UI/Modal';
@@ -18,6 +18,8 @@ import Chat from '../../components/Chat';
 
 import socketIO from 'socket.io-client';
 import Button from '../../components/common/Button';
+import { BASE_URL } from '../../api/api';
+import Preloader from '../../components/common/Preloader';
 // const socket = socketIO.connect('http://localhost:5000');
 
 const Members = () => {
@@ -29,8 +31,10 @@ const Members = () => {
   const { data: searchedUsers, isSuccess } = useFindUserQuery(debouncedValue, { skip: isMembers });
   const [addMember] = useAddMemberMutation();
 
+  //Get user data
   const { data: user } = useGetUserDetailsQuery();
 
+  // Search members
   const handleSearchInput = (e) => {
     setSearchValue(e.target.value);
     if (debouncedValue.length) {
@@ -38,6 +42,7 @@ const Members = () => {
     }
   };
 
+  // Handle add member function
   const handleOnAddMember = async (userId, memberId) => {
     let newMember = { userId, memberId };
     await addMember(newMember);
@@ -71,7 +76,8 @@ const Members = () => {
     <Layout>
       <Title classNames={styles.title}>Members</Title>
       <div className={styles.membersCards}>
-        {cards}
+        <Suspense fallback={<Preloader />}>{cards}</Suspense>
+
         <div className={`${styles.card} ${styles.emptyCard}`}>
           <Button onSmash={() => setShowModal(true)}>
             <AddMemberIcon />
@@ -107,7 +113,7 @@ const Members = () => {
                         borderRadius: 100,
                       }}
                       crossOrigin="anonymous"
-                      src={`http://localhost:3001/${member.avatar}`}
+                      src={`${BASE_URL}/${member.avatar}`}
                     />
                   ) : (
                     <Avatar />

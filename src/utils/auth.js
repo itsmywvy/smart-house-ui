@@ -18,7 +18,7 @@ export function setRefreshToken(token) {
 export async function login(data) {
   try {
     const response = await fetch(
-      'https://backend-smart-house-production.up.railway.app/api/users/login',
+      'https://backend-smart-house-production.up.railway.app/api/user/login',
       {
         method: 'POST',
         headers: {

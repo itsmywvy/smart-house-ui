@@ -8,6 +8,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import axios from 'axios';
 import { getJwtToken, setJwtToken } from '../../utils/auth';
 import { RootState } from '../store';
+import { BASE_URL } from '../../api/api';
 
 interface IAuthValues {
   email: string;
@@ -35,15 +36,12 @@ type LoginData = {
   user: any;
 };
 
-// const BASE_URL = 'https://backend-smart-house-production.up.railway.app/api';
-const BASE_URL = 'http://localhost:3001/api';
-
 export const authApi = createApi({
   reducerPath: 'api/auth',
   keepUnusedDataFor: 500,
   refetchOnMountOrArgChange: true,
   baseQuery: fetchBaseQuery({
-    baseUrl: BASE_URL,
+    baseUrl: `${BASE_URL}/api`,
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.userToken;
       if (token) {
@@ -101,7 +99,11 @@ export const signupUser = createAsyncThunk(
           'Access-Control-Allow-Methods': 'GET, POST, OPTION',
         },
       };
-      await axios.post(`${BASE_URL}/user/signup`, { firstName, lastName, email, password }, config);
+      await axios.post(
+        `${BASE_URL}/api/user/signup`,
+        { firstName, lastName, email, password },
+        config,
+      );
     } catch (error: any) {
       // return custom error message from backend if present
       if (error.response && error.response.data.message) {
@@ -125,7 +127,7 @@ export const loginUser = createAsyncThunk(
           // 'Access-Control-Allow-Methods': 'GET, POST, OPTION',
         },
       };
-      const { data: user } = await axios.post(`${BASE_URL}/user/login`, data, config);
+      const { data: user } = await axios.post(`${BASE_URL}/api/user/login`, data, config);
       // store user's token in session storage
       setJwtToken(user.token);
       return user;

@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import axios from 'axios';
+import { BASE_URL } from '../../api/api';
 
 export interface HomeSlice {
   user: {};
@@ -12,7 +13,7 @@ export const usersDataApi = createApi({
   reducerPath: 'api/users',
   // baseQuery: fetchBaseQuery({ baseUrl: 'https://60d6d2aa307c300017a5f50c.mockapi.io/api/1' }),
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://backend-smart-house-production.up.railway.app/api',
+    baseUrl: `${BASE_URL}/api`,
   }),
   endpoints: (builder) => ({
     getUsers: builder.query({
@@ -32,7 +33,7 @@ export const { useGetOneUserQuery } = usersDataApi;
 export const getWeatherInfo = createAsyncThunk('home/weather', async () => {
   try {
     const { data } = await axios.get(
-      `http://api.weatherapi.com/v1/current.json?key=24f30116d20d408b838142612232204&q=Gagra&aqi=no`,
+      `http://api.weatherapi.com/v1/current.json?key=24f30116d20d408b838142612232204&q=Haifa&aqi=no`,
     );
 
     return data;

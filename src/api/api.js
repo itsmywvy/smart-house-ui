@@ -1,13 +1,15 @@
 import axios from 'axios';
 
+export const BASE_URL = 'https://backend-smart-house-production.up.railway.app';
+
 // const instance = axios.create({
 //   baseURL: 'https://60e301959103bd0017b476e8.mockapi.io'
 // })
 
 const instance = axios.create({
   // baseURL: 'https://60d6d2aa307c300017a5f50c.mockapi.io',
-  // baseURL: 'https://backend-smart-house-production.up.railway.app/api',
-  baseURL: 'http://localhost:3001/api',
+  baseURL: `${BASE_URL}/api`,
+  // baseURL: 'http://localhost:3001/api',
 });
 
 export const roomsAPI = {

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styles from './Chat.module.scss';
+import { BASE_URL } from '../../api/api';
 
 const Chat = ({ showChat, setShowChat, socket, member, user }) => {
   const [message, setMessage] = React.useState('');
@@ -61,7 +62,7 @@ const Chat = ({ showChat, setShowChat, socket, member, user }) => {
           <img
             crossOrigin="anonymous"
             className={styles.avatar}
-            src={`http://localhost:3001/${member.avatar}`}
+            src={`${BASE_URL}/${member.avatar}`}
             alt=""
           />
         </div>
